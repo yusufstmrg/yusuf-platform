@@ -30,9 +30,7 @@ export default function Home() {
       <nav className="site-nav" aria-label="Primary navigation">
         <div className="container nav-inner">
           <a className="brand" href="#top" aria-label="Yusuf B. Situmorang home">YUSUF<span>.</span></a>
-          <div className="nav-links">
-            <a href="#about">About</a><a href="#expertise">Expertise</a><a href="#experience">Experience</a><a href="#building">Building</a><a href="#insights">Insights</a>
-          </div>
+          <div className="nav-links"><a href="#about">About</a><a href="#expertise">Expertise</a><a href="#experience">Experience</a><a href="#building">Building</a><a href="#insights">Insights</a></div>
           <a className="nav-cta" href="#contact">Work with me</a>
         </div>
       </nav>
@@ -55,7 +53,7 @@ export default function Home() {
 
       <section id="expertise" className="section"><div className="container"><div className="section-head"><div><div className="kicker">02 / Expertise</div><h2>A stack built for leverage.</h2></div><p className="section-lead">Established finance capability forms the base. Business, data, AI and communication are the next layers being intentionally developed.</p></div><div className="expertise-list">{expertise.map((item) => <article className="expertise-row" key={item.number}><span className="number">{item.number}</span><h3>{item.title}</h3><p>{item.text}</p><ArrowUpRight className="row-arrow" size={20} /></article>)}</div></div></section>
 
-      <section id="experience" className="section section-white"><div className="container"><div className="section-head"><div><div className="kicker">03 / Experience</div><h2>A finance career in progress.</h2></div><p className="section-lead">Professional experience is the foundation. Proof-of-work is the next layer.</p></div><div className="timeline">{experience.map((item) => <article className="timeline-item" key={item.role + item.company}><div className="period">{item.period}</div><div><h3>{item.role} <span className="gold-dot">·</span> {item.company}</h3><p>{item.text}</p></div></article>)}</div><div className="actions"><a className="btn btn-dark" href="/resume.pdf"><Download size={16} /> View / Download CV</a></div></div></section>
+      <section id="experience" className="section section-white"><div className="container"><div className="section-head"><div><div className="kicker">03 / Experience</div><h2>A finance career in progress.</h2></div><p className="section-lead">Professional experience is the foundation. Proof-of-work is the next layer.</p></div><div className="timeline">{experience.map((item) => <article className="timeline-item" key={item.role + item.company}><div className="period">{item.period}</div><div><h3>{item.role} <span className="gold-dot">·</span> {item.company}</h3><p>{item.text}</p></div></article>)}</div><div className="actions"><a className="btn btn-dark" href="/resume"><Download size={16} /> View my resume</a></div></div></section>
 
       <section id="building" className="section dark-band"><div className="container"><div className="section-head"><div><div className="kicker">04 / Building</div><h2>Proof, not promises.</h2></div><p className="section-lead">The portfolio is intentionally starting from zero. These are the systems and ventures being built now; each will become richer as real evidence accumulates.</p></div><div className="build-grid">{building.map((item) => <article className="build-item" key={item.title}><div className="build-index">{item.tag}</div><h3>{item.title}</h3><p>{item.text}</p><span className="build-status">IN PROGRESS <span /></span></article>)}</div></div></section>
 
