@@ -13,6 +13,8 @@ import {
 import { building, contentPillars, experience, expertise, profile } from "@/lib/content";
 import { whatsappMessage } from "@/lib/whatsapp";
 
+type WhatsappIntent = Parameters<typeof whatsappMessage>[0];
+
 const socials = [
   ["LinkedIn", profile.linkedin, "Professional authority", Linkedin],
   ["Instagram", profile.instagram, "Personal brand", Instagram],
@@ -26,10 +28,10 @@ const proofPrinciples = [
   ["03", "Compound value", "Skills, audience, relationships, assets and ownership should reinforce one another over time."],
 ];
 
-const contactOptions = [
-  ["Hire / Engage", "For roles, consulting, finance/business projects and professional engagements.", "hire" as const],
-  ["Collaborate", "For partnerships, products, content, business ventures and other strategic collaborations.", "collaborate" as const],
-  ["Speaking / Content", "For speaking, knowledge-sharing, interviews, podcasts and creator collaborations.", "speaking" as const],
+const contactOptions: Array<readonly [string, string, WhatsappIntent]> = [
+  ["Hire / Engage", "For roles, consulting, finance/business projects and professional engagements.", "hire"],
+  ["Collaborate", "For partnerships, products, content, business ventures and other strategic collaborations.", "collaborate"],
+  ["Speaking / Content", "For speaking, knowledge-sharing, interviews, podcasts and creator collaborations.", "speaking"],
 ];
 
 export default function Home() {
@@ -76,7 +78,7 @@ export default function Home() {
 
       <section className="section technology-section"><div className="container technology-grid"><div><div className="kicker">07 / Technology</div><h2>Building the system behind the journey.</h2><p className="section-lead">Yusuf OS is the private operating system behind the public platform—tracking personal value, career capital, execution, wealth and purpose with an AI-assisted decision layer.</p></div><div className="tech-stack"><article><Sparkles size={19} /><div><strong>AI Chief of Staff</strong><p>Reviews, bottleneck detection and next-best actions.</p></div></article><article><Github size={19} /><div><strong>Open Build</strong><p>Selected technical experiments and future proof-of-work.</p></div></article><article><Play size={19} /><div><strong>Build in Public</strong><p>Documenting what I learn and build across media.</p></div></article></div></div></section>
 
-      <section id="contact" className="cta"><div className="container"><div className="section-head"><div><div className="kicker">08 / Work with me</div><h2>Choose the reason you&apos;re reaching out.</h2></div><p className="section-lead">Contextual WhatsApp messages make it easier for you to start a useful conversation—and easier for me to understand what you need.</p></div><div className="proof-grid contact-grid">{contactOptions.map(([title, text, intent]) => <article key={title}><span><MessageCircle size={14} /></span><h3>{title}</h3><p>{text}</p><a className="btn btn-primary" href={whatsappMessage(intent)} target="_blank" rel="noreferrer">Open WhatsApp <ArrowUpRight size={15} /></a></article>)}</div><div className="actions"><a className="btn btn-secondary" href={whatsappMessage("general")} target="_blank" rel="noreferrer"><MessageCircle size={16} /> General WhatsApp</a><a className="btn btn-secondary" href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a></div></div></section>
+      <section id="contact" className="cta"><div className="container"><div className="section-head"><div><div className="kicker">08 / Work with me</div><h2>Choose the reason you&apos;re reaching out.</h2></div><p className="section-lead">Contextual WhatsApp messages make it easier for you to start a useful conversation—and easier for me to understand what you need.</p></div><div className="proof-grid contact-grid">{contactOptions.map(([title, text, intent]) => <article key={title}><span><MessageCircle size={14} /></span><h3>{title}</h3><p style={{color:"#b9c9d6"}}>{text}</p><a className="btn btn-primary" href={whatsappMessage(intent)} target="_blank" rel="noreferrer">Open WhatsApp <ArrowUpRight size={15} /></a></article>)}</div><div className="actions"><a className="btn btn-secondary" href={whatsappMessage("general")} target="_blank" rel="noreferrer"><MessageCircle size={16} /> General WhatsApp</a><a className="btn btn-secondary" href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a></div></div></section>
 
       <footer className="footer"><div className="container footer-inner"><div>© {new Date().getFullYear()} <strong>Yusuf B. Situmorang</strong></div><div className="footer-links"><a href={profile.instagram} target="_blank" rel="noreferrer">Instagram</a><a href={profile.tiktok} target="_blank" rel="noreferrer">TikTok</a><a href={profile.youtube} target="_blank" rel="noreferrer">YouTube</a><a href={profile.github} target="_blank" rel="noreferrer">GitHub</a></div></div></footer>
     </main>
