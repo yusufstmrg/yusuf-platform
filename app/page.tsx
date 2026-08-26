@@ -11,9 +11,7 @@ import {
   Youtube,
 } from "lucide-react";
 import { building, contentPillars, experience, expertise, profile } from "@/lib/content";
-import { whatsappMessage } from "@/lib/whatsapp";
-
-type WhatsappIntent = Parameters<typeof whatsappMessage>[0];
+import { WhatsappIntent, whatsappMessage } from "@/lib/whatsapp";
 
 const socials = [
   ["LinkedIn", profile.linkedin, "Professional authority", Linkedin],
@@ -30,6 +28,7 @@ const proofPrinciples = [
 
 const contactOptions: Array<readonly [string, string, WhatsappIntent]> = [
   ["Hire / Engage", "For roles, consulting, finance/business projects and professional engagements.", "hire"],
+  ["Career / Recruitment", "For recruiters and employers exploring relevant roles, interviews or talent conversations.", "career"],
   ["Collaborate", "For partnerships, products, content, business ventures and other strategic collaborations.", "collaborate"],
   ["Speaking / Content", "For speaking, knowledge-sharing, interviews, podcasts and creator collaborations.", "speaking"],
 ];
