@@ -1,0 +1,27 @@
+name: Source Package
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create production source package
+        run: |
+          mkdir -p dist
+          zip -r dist/yusuf-public-os-production-source.zip . \
+            -x ".git/*" ".github/workflows/package.yml" "dist/*" "node_modules/*" ".next/*"
+
+      - name: Upload source package
+        uses: actions/upload-artifact@v4
+        with:
+          name: yusuf-public-os-production-source
+          path: dist/yusuf-public-os-production-source.zip
+          if-no-files-found: error
+          retention-days: 30
