@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ArrowUpRight, Download, Github, Instagram, Linkedin, Play, Sparkles } from "lucide-react";
 import { building, contentPillars, experience, expertise, profile } from "@/lib/content";
 
@@ -34,7 +33,11 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-card reveal delay">
-            <Image className="hero-photo" src="/yusuf.jpg" alt="Yusuf B. Situmorang in professional attire" width={900} height={1100} priority />
+            <div className="hero-portrait" role="img" aria-label="Professional portrait placeholder for Yusuf B. Situmorang">
+              <div className="portrait-glow" />
+              <div className="portrait-monogram">YBS</div>
+              <div className="portrait-note">Professional portrait<br/>asset slot</div>
+            </div>
             <div className="hero-card-caption"><strong>Build. Serve. Grow. Give.</strong>Finance • Business • Technology • Purpose</div>
           </div>
         </div>
@@ -105,7 +108,7 @@ export default function Home() {
       <section id="contact" className="cta">
         <div className="container cta-inner">
           <div><div className="kicker">07 / Contact</div><h2>Let&apos;s build something useful.</h2></div>
-          <div className="actions"><a className="btn btn-primary" href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={16}/> Connect</a><a className="btn btn-secondary" href={`mailto:hello@yusufstmrg.com`}>Start a conversation <ArrowUpRight size={16}/></a></div>
+          <div className="actions"><a className="btn btn-primary" href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={16}/> Connect</a><a className="btn btn-secondary" href="mailto:yusufstmrg@gmail.com">Start a conversation <ArrowUpRight size={16}/></a></div>
         </div>
       </section>
 
