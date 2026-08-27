@@ -89,3 +89,4 @@ Do not publish invented metrics, clients, credentials, achievements, testimonial
 
 
 <!-- Public portfolio UI refinement checkpoint: theme, language, mobile navigation, CTA copy, premium motion and digital presence. -->
+<!-- Deployment trigger for latest portrait/theme/language fixes. -->
