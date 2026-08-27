@@ -65,13 +65,13 @@ export default function Home() {
               <a className="btn btn-secondary" href={whatsappMessage("general")} target="_blank" rel="noreferrer"><MessageCircle size={16} /> <span data-i18n="whatsapp">WhatsApp Me</span></a>
             </div>
           </div>
-          <div className="hero-card reveal delay"><div className="hero-portrait"><Image src="https://github.com/yusufstmrg.png?size=900" alt="Yusuf B. Situmorang" width={900} height={900} priority sizes="(max-width: 900px) 520px, 36vw" /><div className="portrait-shade" /><div className="portrait-frame" /><div className="portrait-caption"><strong>Build. Serve. Grow. Give.</strong><span>Finance • Business • Technology • Purpose</span></div></div></div>
+          <div className="hero-card reveal delay"><div className="hero-portrait"><Image src="/yusuf-portrait.webp" alt="Yusuf B. Situmorang" width={1800} height={1258} priority unoptimized sizes="(max-width: 900px) 520px, 42vw" /><div className="portrait-shade" /><div className="portrait-frame" /><div className="portrait-caption"><strong>Build. Serve. Grow. Give.</strong><span>Finance • Business • Technology • Purpose</span></div></div></div>
         </div>
 
           <div className="hero-proof-bar reveal">
             <article><span className="proof-icon"><Target size={19}/></span><strong>5+</strong><span>Years</span><small>Finance, accounting & tax</small></article>
-            <article><span className="proof-icon"><Briefcase size={19}/></span><strong>Finance</strong><span>Foundation</span><small>Reporting • tax • controls</small></article>
-            <article><span className="proof-icon"><GraduationCap size={19}/></span><strong>7+</strong><span>Projects</span><small>Finance • business • technology</small></article>
+            <article><span className="proof-icon"><Briefcase size={19}/></span><strong>20+</strong><span>Projects</span><small>Finance • business • technology</small></article>
+            <article><span className="proof-icon"><GraduationCap size={19}/></span><strong>7+</strong><span>Certifications</span><small>Finance • analytics • technology</small></article>
             <article><span className="proof-icon"><TrendingUp size={19}/></span><strong>AI</strong><span>+ Technology</span><small>Automation • data • software</small></article>
             <article><span className="proof-icon"><Heart size={19}/></span><strong>Purpose</strong><span>Driven</span><small>Build • Serve • Grow • Give</small></article>
           </div>
