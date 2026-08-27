@@ -1,92 +1,73 @@
 # Yusuf Platform
 
-Public-facing personal digital headquarters for **Yusuf B. Situmorang**, designed to become the public experience of a unified Yusuf Platform.
+Public-facing personal platform for **Yusuf B. Situmorang**, designed to evolve into a unified public + private operating system.
 
-## Positioning
+## Product vision
+
+**One Platform. One Source of Truth. Private Intelligence + Public Proof.**
 
 **Finance × Business × AI × Growth**
 
 **Build. Serve. Grow. Give.**
 
-## End-state architecture
+### Public Portfolio OS
 
-Yusuf Platform is designed as **one platform with two secure experiences**:
+- `/` — personal public profile
+- `/about` — story and positioning
+- `/expertise` — expertise and capability stack
+- `/experience` — career journey
+- `/projects` — public proof-of-work index
+- `/projects/[slug]` — case-study detail pages
+- `/insights` — cross-platform insight hub
+- `/resume` — public resume view
+- `/contact` — opportunity/contact routes
 
-- **Public Portfolio OS** — profile, career, expertise, projects, case studies, proof, insights, ventures and opportunities.
-- **Private Personal OS** — command center for life strategy, execution, skills, career, proof, brand, network, business, wealth, purpose and reviews.
+### Private Personal OS
 
-The two experiences share identity and selected publishable data, while private information remains private by default.
+- `/login` — unified authentication gateway
+- `/os` — private command-center entry (locked until Supabase Auth is configured)
 
-See [`docs/UNIFIED_PLATFORM_ARCHITECTURE.md`](docs/UNIFIED_PLATFORM_ARCHITECTURE.md).
+The private OS will manage life strategy, goals/OKR, masterplan, 90-day sprint, quick capture, skills, career, proof/evidence, personal brand, network, business, wealth, purpose, reviews and AI Chief of Staff.
 
-## Current public stack
+## Security principle
 
-- Next.js 16.3.3 (App Router)
-- React 19.2
-- TypeScript
-- Lucide React
-- CSS-first design system
-- Vercel deployment
-- GitHub source control
-- Supabase/PostgreSQL foundation staged in `supabase/migrations/`
-- Portable publication/visibility contract in `lib/platform.ts`
+Private data is private by default. Public pages must consume only explicitly published projections. Never expose salaries, net worth, liabilities, health information, private goals, confidential applications, private contacts or internal notes through public routes.
 
-## Public routes
+Publication states:
 
-- `/` — public personal headquarters
-- `/about` — professional story and positioning
-- `/expertise` — expertise and skill stack
-- `/experience` — career experience
-- `/building` — current ventures / initiatives when surfaced by the UI
-- `/projects` — proof-of-work index
-- `/projects/[slug]` — project/case-study detail
-- `/insights` — content hub / social distribution
-- `/resume` — public professional profile / resume view
-- `/contact` — opportunity/contact entry point
-- `/robots.txt` — generated robots metadata
-- `/sitemap.xml` — generated sitemap metadata
+`private -> draft -> ready_to_publish -> published -> archived`
 
-## Local development
+## Target architecture
+
+- Next.js + TypeScript
+- Vercel
+- Supabase PostgreSQL
+- Supabase Auth
+- Supabase Storage
+- GitHub
+- Provider-agnostic AI interface (Gemini default for the free-first strategy)
+
+The current Floot/PostgreSQL Private OS is treated as a migration/reference source, not the final canonical runtime. Migration and reconciliation are intentionally staged under `supabase/migrations/` and `docs/`.
+
+## Quality gates
+
+Every milestone is expected to pass lint/build checks before release. Final production certification additionally requires functional, data, security, AI, UX, performance, testing, recovery, observability, documentation, deployment and packaging verification.
+
+## Development
 
 ```bash
 npm install
 npm run dev
-```
-
-Then open `http://localhost:3000`.
-
-## Production build
-
-```bash
 npm run lint
 npm run build
-npm start
 ```
 
-## Environment
-
-Optional:
+Optional environment variable:
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://your-domain.example
 ```
 
-Future canonical data layer variables will be documented in an environment template once Supabase Auth/Storage is wired into the application.
+## Content integrity
 
-## Public content governance
-
-Public content is currently intentionally source-controlled. Do not publish invented metrics, clients, credentials, project results or testimonials. New proof-of-work should be added only after it exists and can be evidenced.
-
-The future publication workflow is:
-
-`private → draft → ready_to_publish → published → archived`
-
-Public routes should consume only explicitly published projections, never raw private records.
-
-## Deployment
-
-Import this repository into Vercel and use the default Next.js build settings. Set `NEXT_PUBLIC_SITE_URL` to the final production URL after deployment.
-
-## Current asset
-
-The hero currently uses the existing public GitHub avatar as a fallback. Replace it with Yusuf's approved professional photo when the final binary asset is added to `public/` or the future media layer.
+Do not publish invented metrics, clients, credentials, achievements, testimonials or outcomes. New proof-of-work should be published only after it exists and can be evidenced.
