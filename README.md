@@ -86,3 +86,6 @@ Do not commit secrets. Use local `.env.local` and Vercel Environment Variables.
 ## Content integrity
 
 Do not publish invented metrics, clients, credentials, achievements, testimonials or outcomes. New proof-of-work should be published only after it exists and can be evidenced.
+
+
+<!-- Public portfolio UI refinement checkpoint: theme, language, mobile navigation, CTA copy, premium motion and digital presence. -->
