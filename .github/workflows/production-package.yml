@@ -1,0 +1,28 @@
+name: Production Package
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create source package
+        run: |
+          rm -rf .git
+          zip -r Yusuf-Public-OS-Full-Production-Source.zip . \
+            -x "node_modules/*" ".next/*" ".vercel/*" "*.zip"
+
+      - name: Upload production package
+        uses: actions/upload-artifact@v4
+        with:
+          name: Yusuf-Public-OS-Full-Production-Source
+          path: Yusuf-Public-OS-Full-Production-Source.zip
+          retention-days: 30
