@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Menu, Moon, X } from "lucide-react";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 const links = [
   ["About", "/about"],
@@ -15,6 +16,7 @@ const links = [
 ] as const;
 
 export function SiteNav() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [dim, setDim] = useState(false);
 
@@ -23,7 +25,7 @@ export function SiteNav() {
       <div className="container nav-inner">
         <Link className="brand" href="/" aria-label="Yusuf B. Situmorang home">YUSUF<span>.</span></Link>
         <div className="nav-links">
-          {links.map(([label, href]) => <Link key={label} href={href}>{label}</Link>)}
+          {links.map(([label, href]) => <Link className={((pathname === "/" && label === "About") || (href !== "/#building" && pathname.startsWith(href))) ? "active" : ""} key={label} href={href}>{label}</Link>)}
         </div>
         <div className="nav-actions">
           <Link className="nav-cta" href="/contact">Contact Me</Link>
