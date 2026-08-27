@@ -1,7 +1,6 @@
 /* Final production visual layer. Loaded after globals + legacy overrides. */
 :root{--lux-gold:#e8bd62;--lux-gold-deep:#c9973e;--lux-navy:#061522;--lux-paper:#f6f8fa}
 
-/* Theme controls: explicit, deterministic, persistent. */
 html[data-yusuf-theme="dark"] body{background:#020b14;color:#f4f7fa}
 html[data-yusuf-theme="dark"] .site-nav{background:rgba(2,10,18,.84)!important;border-bottom-color:rgba(255,255,255,.10)!important}
 html[data-yusuf-theme="dark"] .site-nav .brand,html[data-yusuf-theme="dark"] .site-nav .icon-btn{color:#f4f7fa!important}
@@ -26,25 +25,22 @@ html[data-yusuf-theme="light"] .hero-proof-bar small{color:#607080!important}
 html[data-yusuf-theme="light"] .mobile-nav-panel{background:rgba(247,249,251,.99)!important;border-color:#d8e0e6!important}
 html[data-yusuf-theme="light"] .mobile-nav-panel a{color:#162738!important}
 
-/* Desktop/mobile navigation: no hamburger on desktop; mobile drawer only. */
 .nav-menu-trigger{display:none!important}
 @media(max-width:900px){.nav-menu-trigger{display:grid!important}.nav-links{display:none!important}.nav-cta{display:none!important}.nav-actions{gap:6px!important}.language-switcher{min-width:68px!important}.language-switcher svg{display:none!important}}
 
-/* Hero layout: preserve the approved executive composition without a broken-image footprint. */
 .hero-card{position:relative}
 .hero-portrait{position:relative;overflow:hidden!important;isolation:isolate}
-.hero-portrait img{position:relative!important;z-index:0!important;display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 14%!important}
+.portrait-media{position:absolute!important;inset:0!important;overflow:hidden!important;border-radius:inherit;background:#102b42 center/cover no-repeat}
+.portrait-media img{position:absolute!important;inset:0!important;z-index:1!important;display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 14%!important}
 .portrait-fallback{position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 28%,rgba(228,189,106,.22),transparent 30%),linear-gradient(155deg,#173652 0%,#0b1f33 58%,#06111d 100%);color:#fff}
 .portrait-fallback span{font:800 clamp(64px,10vw,110px)/1 Manrope,sans-serif;letter-spacing:-.09em}
 .hero-portrait .portrait-shade,.hero-portrait .portrait-frame,.hero-portrait .portrait-caption{z-index:3!important}
 
-/* Premium CTA and proof bar. */
 .btn-primary{background:linear-gradient(135deg,#f4cf78 0%,#d9a84d 100%)!important;color:#07121d!important;border:1px solid rgba(255,255,255,.28)!important;box-shadow:0 12px 32px rgba(201,151,62,.22)!important}
 .btn-primary:hover{filter:brightness(1.05);transform:translateY(-2px)}
 .hero-proof-bar{grid-template-columns:repeat(5,minmax(0,1fr))!important}
 .hero-proof-bar article{min-width:0}
 
-/* Subtle high-end motion; disabled for reduced-motion users. */
 @media(prefers-reduced-motion:no-preference){
   .hero-orbit-one{animation:luxOrbit 11s ease-in-out infinite}
   .hero-orbit-two{animation:luxOrbit 13s ease-in-out infinite reverse}
@@ -57,7 +53,6 @@ html[data-yusuf-theme="light"] .mobile-nav-panel a{color:#162738!important}
 @keyframes luxOrbit{0%,100%{opacity:.38;transform:scale(.99) rotate(-2deg)}50%{opacity:.9;transform:scale(1.02) rotate(3deg)}}
 @keyframes luxFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 
-/* Mobile composition: portrait first, readable type, no squeezed desktop grid. */
 @media(max-width:720px){
   .container{width:min(100% - 28px,1160px)!important}
   .hero{padding-top:100px!important;padding-bottom:68px!important}
@@ -80,6 +75,5 @@ html[data-yusuf-theme="light"] .mobile-nav-panel a{color:#162738!important}
   .hero-proof-bar article:last-child{grid-column:auto!important}
 }
 
-/* Language-switcher is intentionally compact and keyboard accessible. */
 .language-switcher button:focus-visible,.icon-btn:focus-visible,.btn:focus-visible,.nav-links a:focus-visible{outline:2px solid var(--lux-gold)!important;outline-offset:3px}
 .language-switcher button.selected{color:var(--lux-gold)!important}
