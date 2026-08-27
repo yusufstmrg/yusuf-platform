@@ -64,6 +64,7 @@ export default function Home() {
           <div className="hero-proof-bar reveal">
             <article><strong>5+</strong><span>Years</span><small>Finance, accounting & tax</small></article>
             <article><strong>Finance</strong><span>Foundation</span><small>Reporting • tax • controls</small></article>
+            <article><strong>7+</strong><span>Projects</span><small>Finance • business • technology</small></article>
             <article><strong>AI</strong><span>+ Technology</span><small>Automation • data • software</small></article>
             <article><strong>Purpose</strong><span>Driven</span><small>Build • Serve • Grow • Give</small></article>
           </div>
