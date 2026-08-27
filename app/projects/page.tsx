@@ -1,14 +1,21 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, MessageCircle } from "lucide-react";
-import { building, profile } from "@/lib/content";
+import { ArrowLeft, ArrowUpRight, MessageCircle, ShieldCheck } from "lucide-react";
+import { building } from "@/lib/content";
 import { whatsappMessage } from "@/lib/whatsapp";
+import { getDb } from "@/lib/db/server";
 
+export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Projects — Yusuf B. Situmorang",
   description: "Selected projects and current builds by Yusuf B. Situmorang.",
 };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const db = getDb();
+  const publications = db
+    ? await db`SELECT public_slug, public_title, public_summary, public_payload, published_at FROM public.public_publications WHERE entity_type='project' ORDER BY published_at DESC LIMIT 40`
+    : [];
+
   return (
     <main className="section section-white">
       <div className="container">
@@ -17,20 +24,34 @@ export default function ProjectsPage() {
         </div>
         <div className="section-head">
           <div><div className="kicker">Projects</div><h1 style={{ fontSize: "clamp(44px, 7vw, 76px)" }}>Proof of work, built in public.</h1></div>
-          <p className="section-lead">The public portfolio is intentionally starting from zero. These are the initiatives currently being built; detailed case studies will appear only after there is real evidence to show.</p>
+          <p className="section-lead">Only explicitly published projections appear here. Private and draft work remains in the Personal OS.</p>
         </div>
-        <div className="build-grid" style={{ borderTop: "1px solid var(--line)" }}>
-          {building.map((item) => (
-            <article className="card" key={item.title} style={{ borderRadius: 0, boxShadow: "none", minHeight: 300, display: "flex", flexDirection: "column" }}>
-              <div className="tag">{item.tag}</div>
-              <h2 style={{ margin: "22px 0 10px", fontSize: 30 }}>{item.title}</h2>
-              <p>{item.text}</p>
-              <div style={{ marginTop: "auto", paddingTop: 28, display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <span className="pill">Currently building</span>
-              </div>
-            </article>
-          ))}
-        </div>
+
+        {publications.length > 0 && <section style={{ marginBottom: 54 }}>
+          <div className="kicker">Published proof</div>
+          <div className="build-grid" style={{ borderTop: "1px solid var(--line)" }}>
+            {publications.map((item:{public_slug:string;public_title:string;public_summary:string|null;published_at:string}) => <Link href={`/projects/${item.public_slug}`} className="card" key={item.public_slug} style={{ borderRadius:0, boxShadow:"none", minHeight:240, display:"flex", flexDirection:"column" }}>
+              <div className="tag">PUBLISHED</div><h2 style={{ margin:"22px 0 10px", fontSize:30 }}>{item.public_title}</h2><p>{item.public_summary || "Published case study."}</p><span className="os-module-link" style={{marginTop:"auto"}}>Open case study <ArrowUpRight size={14}/></span>
+            </Link>)}
+          </div>
+        </section>}
+
+        <section>
+          <div className="kicker">Current builds</div>
+          <div className="build-grid" style={{ borderTop: "1px solid var(--line)" }}>
+            {building.map((item) => (
+              <article className="card" key={item.title} style={{ borderRadius: 0, boxShadow: "none", minHeight: 300, display: "flex", flexDirection: "column" }}>
+                <div className="tag">{item.tag}</div>
+                <h2 style={{ margin: "22px 0 10px", fontSize: 30 }}>{item.title}</h2>
+                <p>{item.text}</p>
+                <div style={{ marginTop: "auto", paddingTop: 28, display: "flex", gap: 10, flexWrap: "wrap" }}>
+                  <span className="pill">Currently building</span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="cta" style={{ marginTop: 70, borderRadius: 26 }}>
           <div className="container" style={{ padding: "58px 0" }}>
             <div className="kicker">Work / Collaborate</div>
@@ -39,7 +60,7 @@ export default function ProjectsPage() {
             <div className="actions">
               <a className="btn btn-primary" href={whatsappMessage("hire")} target="_blank" rel="noreferrer"><MessageCircle size={16} /> Hire / Engage</a>
               <a className="btn btn-secondary" href={whatsappMessage("collaborate")} target="_blank" rel="noreferrer">Collaborate <ArrowUpRight size={16} /></a>
-              <Link className="btn btn-secondary" href="/">Back to homepage</Link>
+              <Link className="btn btn-secondary" href="/"><ShieldCheck size={15}/> Privacy by default</Link>
             </div>
           </div>
         </section>
