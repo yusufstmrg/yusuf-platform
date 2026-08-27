@@ -12,8 +12,8 @@ export const metadata = {
 export default async function QuickCapturePage() {
   if (!auth) redirect("/login?reason=auth_setup");
 
-  const { session } = await auth.getSession();
-  if (!session) redirect("/auth/sign-in");
+  const result = await auth.getSession();
+  if (!result.data?.session) redirect("/auth/sign-in");
 
   return (
     <main className="os-shell">
