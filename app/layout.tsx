@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@neondatabase/auth-ui/css";
 import "./globals.css";
 import "./overrides.css";
+import "./final-polish.css";
 import { Providers } from "./providers";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://yusuf-platform.vercel.app";
