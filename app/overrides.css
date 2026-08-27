@@ -291,3 +291,6 @@ html[data-theme="light"] .mobile-nav-cta{color:#9b6a17!important;border-color:rg
   .language-switcher svg{display:none}
   .hero-proof-bar article{padding:18px 20px}
 }
+
+.hero-proof-bar .proof-icon{display:grid;width:42px;height:42px;margin:0 0 12px;padding:0;color:var(--gold2);font-size:inherit;letter-spacing:normal;text-transform:none;background:rgba(228,189,106,.06)}
+.hero-proof-bar .proof-icon svg{display:block}
