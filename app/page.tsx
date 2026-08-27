@@ -1,14 +1,21 @@
 import Image from "next/image";
 import {
   ArrowUpRight,
+  Briefcase,
+  Building2,
+  Calculator,
   Download,
   Github,
+  GraduationCap,
+  Heart,
   Instagram,
   Linkedin,
   MessageCircle,
   Music2,
   Play,
   Sparkles,
+  Target,
+  TrendingUp,
   Youtube,
 } from "lucide-react";
 import Link from "next/link";
@@ -62,11 +69,11 @@ export default function Home() {
         </div>
 
           <div className="hero-proof-bar reveal">
-            <article><strong>5+</strong><span>Years</span><small>Finance, accounting & tax</small></article>
-            <article><strong>Finance</strong><span>Foundation</span><small>Reporting • tax • controls</small></article>
-            <article><strong>7+</strong><span>Projects</span><small>Finance • business • technology</small></article>
-            <article><strong>AI</strong><span>+ Technology</span><small>Automation • data • software</small></article>
-            <article><strong>Purpose</strong><span>Driven</span><small>Build • Serve • Grow • Give</small></article>
+            <article><span className="proof-icon"><Target size={19}/></span><strong>5+</strong><span>Years</span><small>Finance, accounting & tax</small></article>
+            <article><span className="proof-icon"><Briefcase size={19}/></span><strong>Finance</strong><span>Foundation</span><small>Reporting • tax • controls</small></article>
+            <article><span className="proof-icon"><GraduationCap size={19}/></span><strong>7+</strong><span>Projects</span><small>Finance • business • technology</small></article>
+            <article><span className="proof-icon"><TrendingUp size={19}/></span><strong>AI</strong><span>+ Technology</span><small>Automation • data • software</small></article>
+            <article><span className="proof-icon"><Heart size={19}/></span><strong>Purpose</strong><span>Driven</span><small>Build • Serve • Grow • Give</small></article>
           </div>
       </section>
 
@@ -78,9 +85,9 @@ export default function Home() {
             <p className="section-lead">I connect finance, business thinking and emerging technology to make better decisions, build useful systems and create measurable value.</p>
           </div>
           <div className="what-grid">
-            <article><span>01</span><h3>Finance</h3><p>Accounting, tax, financial analysis, reporting, controls and decision support.</p></article>
-            <article><span>02</span><h3>Business</h3><p>Strategy, operating systems, venture building, commercial thinking and growth.</p></article>
-            <article><span>03</span><h3>Technology & AI</h3><p>AI-assisted workflows, automation, data and software experiments that turn ideas into leverage.</p></article>
+            <article><div className="what-icon"><Calculator size={20}/></div><span>01</span><h3>Finance</h3><p>Accounting, tax, financial analysis, reporting, controls and decision support.</p></article>
+            <article><div className="what-icon"><Building2 size={20}/></div><span>02</span><h3>Business</h3><p>Strategy, operating systems, venture building, commercial thinking and growth.</p></article>
+            <article><div className="what-icon"><Sparkles size={20}/></div><span>03</span><h3>Technology & AI</h3><p>AI-assisted workflows, automation, data and software experiments that turn ideas into leverage.</p></article>
           </div>
         </div>
       </section>
