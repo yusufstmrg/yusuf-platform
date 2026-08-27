@@ -26,7 +26,9 @@ const modules = [
 export default async function PersonalOsPage() {
   if (!auth) redirect("/login?reason=auth_setup");
 
-  const { session, user } = await auth.getSession();
+  const result = await auth.getSession();
+  const session = result.data?.session;
+  const user = result.data?.user;
   if (!session || !user) redirect("/auth/sign-in");
 
   return (
