@@ -67,6 +67,28 @@ export default function Home() {
           </div>
           <div className="hero-card reveal delay"><div className="hero-portrait"><Image src="https://github.com/yusufstmrg.png?size=900" alt="Yusuf B. Situmorang" width={900} height={900} priority sizes="(max-width: 900px) 520px, 36vw" /><div className="portrait-shade" /><div className="portrait-frame" /><div className="portrait-caption"><strong>Build. Serve. Grow. Give.</strong><span>Finance • Business • Technology • Purpose</span></div></div></div>
         </div>
+
+          <div className="hero-proof-bar reveal">
+            <article><strong>5+</strong><span>Years</span><small>Finance, accounting & tax</small></article>
+            <article><strong>Finance</strong><span>Foundation</span><small>Reporting • tax • controls</small></article>
+            <article><strong>AI</strong><span>+ Technology</span><small>Automation • data • software</small></article>
+            <article><strong>Purpose</strong><span>Driven</span><small>Build • Serve • Grow • Give</small></article>
+          </div>
+      </section>
+
+
+      <section className="section what-i-do">
+        <div className="container">
+          <div className="section-head">
+            <div><div className="kicker">01.5 / What I Do</div><h2>Turning complexity into clarity.</h2></div>
+            <p className="section-lead">I connect finance, business thinking and emerging technology to make better decisions, build useful systems and create measurable value.</p>
+          </div>
+          <div className="what-grid">
+            <article><span>01</span><h3>Finance</h3><p>Accounting, tax, financial analysis, reporting, controls and decision support.</p></article>
+            <article><span>02</span><h3>Business</h3><p>Strategy, operating systems, venture building, commercial thinking and growth.</p></article>
+            <article><span>03</span><h3>Technology & AI</h3><p>AI-assisted workflows, automation, data and software experiments that turn ideas into leverage.</p></article>
+          </div>
+        </div>
       </section>
 
       <section id="about" className="section section-white"><div className="container"><div className="section-head"><div><div className="kicker">01 / About</div><h2>Numbers are only the beginning.</h2></div><p className="section-lead">My work starts with finance, but the bigger ambition is to connect financial thinking with business decisions, technology and human growth.</p></div><div className="editorial-grid"><article className="editorial-lead"><span className="large-mark">YBS</span><p>I am deliberately building from a strong finance foundation toward a broader stack of business, technology, communication and ownership.</p><p>The public website is designed to evolve with that journey. It will show the work as it is built—not pretend that tomorrow&apos;s achievements already exist.</p></article><div className="statement-stack"><article><span>POSITIONING</span><h3>{profile.positioning}</h3></article><article><span>PHILOSOPHY</span><h3>{profile.philosophy}</h3></article><article><span>HOME BASE</span><h3>{profile.location}</h3></article></div></div><div className="actions"><Link className="btn btn-dark" href="/about">Read my story <ArrowUpRight size={15} /></Link></div></div></section>
