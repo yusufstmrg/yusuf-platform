@@ -22,6 +22,7 @@ import Link from "next/link";
 import { building, contentPillars, experience, expertise, profile } from "@/lib/content";
 import { SiteNav } from "@/components/site-nav";
 import { WhatsappIntent, whatsappMessage } from "@/lib/whatsapp";
+import { HeroPortrait } from "@/components/hero-portrait";
 
 const socials = [
   ["LinkedIn", profile.linkedin, "Professional authority", Linkedin],
@@ -65,7 +66,7 @@ export default function Home() {
               <a className="btn btn-secondary" href={whatsappMessage("general")} target="_blank" rel="noreferrer"><MessageCircle size={16} /> <span data-i18n="whatsapp">WhatsApp Me</span></a>
             </div>
           </div>
-          <div className="hero-card reveal delay"><div className="hero-portrait"><Image src="/yusuf-portrait.webp" alt="Yusuf B. Situmorang" width={1800} height={1258} priority unoptimized sizes="(max-width: 900px) 520px, 42vw" /><div className="portrait-shade" /><div className="portrait-frame" /><div className="portrait-caption"><strong>Build. Serve. Grow. Give.</strong><span>Finance • Business • Technology • Purpose</span></div></div></div>
+          <div className="hero-card reveal delay"><div className="hero-portrait"><HeroPortrait /><div className="portrait-shade" /><div className="portrait-frame" /><div className="portrait-caption"><strong>Build. Serve. Grow. Give.</strong><span>Finance • Business • Technology • Purpose</span></div></div></div>
         </div>
 
           <div className="hero-proof-bar reveal">
@@ -76,7 +77,6 @@ export default function Home() {
             <article><span className="proof-icon"><Heart size={19}/></span><strong>Purpose</strong><span>Driven</span><small>Build • Serve • Grow • Give</small></article>
           </div>
       </section>
-
 
       <section className="section what-i-do">
         <div className="container">
