@@ -184,3 +184,110 @@ html[data-theme="light"] .presence-card:hover{background:rgba(201,151,62,.07)}
 }
 @keyframes orbitPulse{0%,100%{opacity:.45;transform:scale(.98) rotate(0deg)}50%{opacity:1;transform:scale(1.02) rotate(3deg)}}
 @keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+
+
+/* FINAL QA POLISH — approved mockup alignment, true light/dark themes, premium interaction */
+:root{
+  --gold-lux:#e8bd62;
+  --gold-deep:#c9973e;
+  --light-bg:#f6f8fa;
+  --light-surface:#ffffff;
+  --light-ink:#081522;
+  --light-muted:#5f7080;
+}
+.btn-primary{
+  background:linear-gradient(135deg,#f4cf78 0%,#d9a84d 100%);
+  color:#07121d;
+  border:1px solid rgba(255,255,255,.24);
+  text-transform:none;
+}
+.btn-primary:hover{filter:brightness(1.05)}
+.hero .actions .btn-primary{font-weight:900;letter-spacing:.01em}
+.hero .actions .btn-primary span{text-transform:none}
+.nav-actions{gap:8px}
+.language-switcher{min-width:76px;justify-content:center}
+.site-nav{transition:background .25s ease,border-color .25s ease,color .25s ease}
+.hero,.section,.section-white,.technology-section,.what-i-do,.digital-presence-section,.footer{transition:background .35s ease,color .35s ease,border-color .35s ease}
+.icon-btn{transition:transform .2s ease,background .2s ease,color .2s ease}
+.icon-btn:active{transform:scale(.94)}
+.what-grid article{position:relative;overflow:hidden}
+.what-grid article:after{
+  content:"";position:absolute;inset:auto -30% -60% 25%;height:150px;
+  background:radial-gradient(circle,rgba(228,189,106,.16),transparent 65%);
+  pointer-events:none;
+}
+.what-icon,.proof-icon{
+  width:42px;height:42px;border:1px solid rgba(228,189,106,.28);border-radius:13px;
+  display:grid;place-items:center;color:var(--gold2);
+  background:rgba(228,189,106,.06);margin-bottom:14px;
+}
+.hero-proof-bar article{position:relative}
+.hero-proof-bar article:before{
+  content:"";position:absolute;left:18px;right:18px;bottom:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(228,189,106,.35),transparent);
+}
+@media(prefers-reduced-motion:no-preference){
+  .btn,.what-grid article,.expertise-row,.build-item,.social,.presence-card{transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease,background .3s ease,border-color .3s ease}
+  .what-grid article:hover,.build-item:hover,.social:hover,.presence-card:hover{transform:translateY(-5px)}
+  .hero-label{animation:labelIn .8s ease both}
+}
+@keyframes labelIn{from{opacity:0;letter-spacing:.28em;transform:translateX(-8px)}to{opacity:1;letter-spacing:.17em;transform:none}}
+
+/* True light theme: the hero and navigation become light, while dark-band/CTA remain intentional dark sections. */
+html[data-theme="light"] body{background:var(--light-bg);color:var(--light-ink)}
+html[data-theme="light"] .site-nav{background:rgba(246,248,250,.92);border-bottom-color:#d8e0e6;color:var(--light-ink)}
+html[data-theme="light"] .site-nav .brand{color:var(--light-ink)}
+html[data-theme="light"] .site-nav .nav-links a{color:#536575}
+html[data-theme="light"] .site-nav .nav-links a:hover,html[data-theme="light"] .site-nav .nav-links a.active{color:var(--light-ink)}
+html[data-theme="light"] .nav-cta{border-color:#102131;color:#102131}
+html[data-theme="light"] .icon-btn{color:#102131}
+html[data-theme="light"] .language-switcher{background:#fff;border-color:#d2dce3;color:#536575}
+html[data-theme="light"] .hero{
+  color:#081522;
+  background:
+    radial-gradient(circle at 80% 22%,rgba(228,189,106,.22),transparent 24%),
+    radial-gradient(circle at 92% 72%,rgba(60,115,150,.10),transparent 26%),
+    linear-gradient(135deg,#f7f9fb 0%,#eaf0f4 58%,#f8fafb 100%);
+}
+html[data-theme="light"] .hero:before{opacity:.06}
+html[data-theme="light"] .hero:after{border-color:rgba(201,151,62,.22)}
+html[data-theme="light"] .hero-copy{color:#526678}
+html[data-theme="light"] .hero-meta{color:#526678}
+html[data-theme="light"] .hero h1{color:#07121d}
+html[data-theme="light"] .hero h1 em{color:#b37b20}
+html[data-theme="light"] .hero-label{color:#a66e15}
+html[data-theme="light"] .hero-label:before{background:#b37b20}
+html[data-theme="light"] .hero-card{background:transparent}
+html[data-theme="light"] .hero-proof-bar{background:rgba(255,255,255,.78);border-color:rgba(8,21,34,.12);box-shadow:0 22px 60px rgba(8,21,34,.10);color:#081522}
+html[data-theme="light"] .hero-proof-bar article{border-color:rgba(8,21,34,.10)}
+html[data-theme="light"] .hero-proof-bar strong{color:#081522}
+html[data-theme="light"] .hero-proof-bar small{color:#607080}
+html[data-theme="light"] .what-i-do{background:#071522;color:#fff}
+html[data-theme="light"] .section-white{background:#fff;color:#081522}
+html[data-theme="light"] .section-white .section-lead,html[data-theme="light"] .section-white p{color:#5f7080}
+html[data-theme="light"] .technology-section{background:#edf2f5;color:#081522}
+html[data-theme="light"] .digital-presence-section{background:#f7f9fa;color:#081522}
+html[data-theme="light"] .digital-presence-section .section-lead{color:#5f7080}
+html[data-theme="light"] .btn-dark{background:#071725;color:#fff}
+html[data-theme="light"] .btn-secondary{border-color:#9eacb7;color:#162738}
+html[data-theme="light"] .hero .btn-secondary{color:#102131;border-color:#7f919f;background:rgba(255,255,255,.28)}
+html[data-theme="light"] .portrait-caption{background:rgba(7,23,37,.80);color:#fff}
+html[data-theme="light"] .footer{background:#020b14;color:#8ea0af}
+html[data-theme="light"] .large-mark{color:#e5eaee}
+html[data-theme="light"] .pill{background:#fff;border-color:#d4dde4;color:#405363}
+html[data-theme="light"] .social{background:#fff}
+html[data-theme="light"] .social:hover{background:#fbfcfd}
+html[data-theme="light"] .presence-card{background:transparent}
+html[data-theme="light"] .presence-card:hover{background:rgba(201,151,62,.07)}
+html[data-theme="light"] .mobile-nav-panel{background:rgba(246,248,250,.98);border-color:#d8e0e6}
+html[data-theme="light"] .mobile-nav-panel a{color:#162738}
+html[data-theme="light"] .mobile-nav-cta{color:#9b6a17!important;border-color:rgba(201,151,62,.45)}
+@media(max-width:900px){
+  .nav-menu-trigger{display:grid}
+  .nav-actions{margin-left:auto}
+}
+@media(max-width:560px){
+  .language-switcher{min-width:70px}
+  .language-switcher svg{display:none}
+  .hero-proof-bar article{padding:18px 20px}
+}
