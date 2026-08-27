@@ -12,7 +12,7 @@ import {
   Youtube,
 } from "lucide-react";
 import Link from "next/link";
-import { building, contentPillars, experience, expertise, profile } from "@/lib/content";
+import { building, contentPillars, experience, expertise, profile } from "@/lib/content";\nimport { SiteNav } from "@/components/site-nav";
 import { WhatsappIntent, whatsappMessage } from "@/lib/whatsapp";
 
 const socials = [
@@ -42,15 +42,7 @@ function slugify(value: string) {
 export default function Home() {
   return (
     <main>
-      <nav className="site-nav" aria-label="Primary navigation">
-        <div className="container nav-inner">
-          <a className="brand" href="#top" aria-label="Yusuf B. Situmorang home">YUSUF<span>.</span></a>
-          <div className="nav-links">
-            <Link href="/about">About</Link><Link href="/expertise">Expertise</Link><Link href="/experience">Experience</Link><a href="#building">Building</a><Link href="/insights">Insights</Link><Link href="/projects">Projects</Link><Link href="/resume">Resume</Link>
-          </div>
-          <Link className="nav-cta" href="/contact">Contact</Link>
-        </div>
-      </nav>
+      <SiteNav />
 
       <section id="top" className="hero">
         <div className="hero-orbit hero-orbit-one" /><div className="hero-orbit hero-orbit-two" />
