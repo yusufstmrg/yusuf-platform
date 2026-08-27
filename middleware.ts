@@ -1,27 +1,38 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { createNeonAuth } from "@neondatabase/auth/next/server";
+
+const baseUrl = process.env.NEON_AUTH_BASE_URL;
+const cookieSecret = process.env.NEON_AUTH_COOKIE_SECRET;
+const auth =
+  baseUrl && cookieSecret
+    ? createNeonAuth({
+        baseUrl,
+        cookies: { secret: cookieSecret, sessionDataTtl: 300 },
+      })
+    : null;
 
 /**
- * Temporary production safety gate for the private workspace.
- * The private OS remains inaccessible until the Supabase Auth integration is
- * configured and the server-side auth check is enabled.
+ * Fail-closed private route protection.
+ * If Neon Auth is not configured, /os is redirected to the setup gateway.
+ * Once configured, Neon Auth owns session validation and refresh.
  */
-export function middleware(request: NextRequest) {
+export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (!pathname.startsWith("/os")) {
     return NextResponse.next();
   }
 
-  const authReady = process.env.YUSUF_AUTH_READY === "true";
-  if (!authReady) {
+  if (!auth) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     url.searchParams.set("from", pathname);
+    url.searchParams.set("reason", "auth_setup");
     return NextResponse.redirect(url);
   }
 
-  return NextResponse.next();
+  return auth.middleware({ loginUrl: "/auth/sign-in" })(request);
 }
 
 export const config = {
