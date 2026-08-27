@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const localSrc = "/yusuf-portrait.webp";
+const localSrc = "/yusuf-professional-portrait.webp";
 
 export function HeroPortrait() {
   const [loaded, setLoaded] = useState(false);
@@ -14,8 +14,8 @@ export function HeroPortrait() {
         <img
           src={localSrc}
           alt="Yusuf B. Situmorang"
-          width={1200}
-          height={900}
+          width={800}
+          height={1140}
           decoding="async"
           fetchPriority="high"
           style={{ opacity: loaded ? 1 : 0, transition: "opacity .25s ease" }}
@@ -23,7 +23,7 @@ export function HeroPortrait() {
           onError={() => setFailed(true)}
         />
       ) : (
-        <div className="portrait-fallback">
+        <div className="portrait-fallback" aria-hidden="true">
           <span>YBS</span>
         </div>
       )}
