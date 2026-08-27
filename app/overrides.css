@@ -112,3 +112,6 @@
   .hero-proof-bar article{border-right:0!important;border-bottom:1px solid rgba(255,255,255,.10)}
   .hero-proof-bar article:last-child{border-bottom:0}
 }
+
+.site-nav .nav-links a.active{color:#fff;position:relative}.site-nav .nav-links a.active:after{content:"";position:absolute;left:0;right:0;bottom:-25px;height:2px;background:var(--gold)}
+@media(max-width:900px){.site-nav .nav-links a.active:after{display:none}}
