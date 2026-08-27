@@ -4,10 +4,17 @@ import { auth } from "@/lib/auth/server";
 import { getDb } from "@/lib/db/server";
 import { revalidatePath } from "next/cache";
 
-export async function createQuickCapture(formData: FormData) {
+export type QuickCaptureState = { ok: boolean; message: string };
+
+export async function createQuickCapture(
+  _previousState: QuickCaptureState,
+  formData: FormData,
+): Promise<QuickCaptureState> {
   if (!auth) return { ok: false, message: "Authentication is not configured yet." };
 
-  const { session, user } = await auth.getSession();
+  const result = await auth.getSession();
+  const session = result.data?.session;
+  const user = result.data?.user;
   if (!session || !user) return { ok: false, message: "Please sign in again." };
 
   const rawText = String(formData.get("raw_text") ?? "").trim();
