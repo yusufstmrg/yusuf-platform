@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, LockKeyhole, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, LockKeyhole, ShieldCheck, Sparkles } from "lucide-react";
 
 export const metadata = {
   title: "Sign in — Yusuf B. Situmorang",
@@ -10,34 +10,40 @@ export const metadata = {
 export default function LoginPage() {
   return (
     <main className="section section-white" style={{ minHeight: "100svh", display: "grid", placeItems: "center" }}>
-      <div className="container" style={{ maxWidth: 760 }}>
+      <div className="container" style={{ maxWidth: 920 }}>
         <Link className="btn btn-dark" href="/" style={{ display: "inline-flex", marginBottom: 36 }}>
           <ArrowLeft size={15} /> Back to Yusuf
         </Link>
 
         <div className="kicker">Yusuf Platform</div>
-        <h1 style={{ marginTop: 10, maxWidth: 680 }}>One identity. Two worlds. Private by default.</h1>
-        <p className="section-lead" style={{ maxWidth: 620, marginTop: 18 }}>
-          Your public profile and private Personal OS are designed to share a controlled identity layer while keeping sensitive life, financial and planning data private.
+        <h1 style={{ marginTop: 10, maxWidth: 780 }}>One identity. Two worlds. Private by default.</h1>
+        <p className="section-lead" style={{ maxWidth: 700, marginTop: 18 }}>
+          The public profile and private Personal OS share a controlled identity layer. Sensitive life, financial, career and planning data stays inside the private workspace.
         </p>
 
-        <div className="card-grid" style={{ marginTop: 42 }}>
+        <div className="grid-2" style={{ marginTop: 42 }}>
           <div className="card">
             <LockKeyhole size={20} />
             <h3>Private Personal OS</h3>
-            <p>Command Center, goals, sprint, skills, career, business, wealth, purpose, reviews and AI Chief of Staff.</p>
+            <p>Command Center, life strategy, goals, sprint, quick capture, skills, career, proof, brand, network, business, wealth, purpose and reviews.</p>
+            <Link className="btn btn-dark" href="/auth/sign-in" style={{ marginTop: 20 }}>
+              Sign in securely <ArrowUpRight size={15} />
+            </Link>
           </div>
           <div className="card">
             <ShieldCheck size={20} />
-            <h3>Security Gate</h3>
-            <p>Authentication and authorization are intentionally required before private routes can be enabled.</p>
+            <h3>Security boundary</h3>
+            <p>Private records are owner-scoped and intended to be exposed only through authenticated application paths and explicit publication workflows.</p>
+            <Link className="btn btn-secondary" href="/auth/sign-up" style={{ marginTop: 20 }}>
+              Create account <Sparkles size={15} />
+            </Link>
           </div>
         </div>
 
         <div className="notice" style={{ marginTop: 28, padding: 20, border: "1px solid rgba(17,37,54,.14)", borderRadius: 18, background: "#f6f8fa" }}>
-          <strong>Private access is being wired.</strong>
+          <strong>Neon Auth is now the authentication foundation.</strong>
           <p style={{ margin: "8px 0 0" }}>
-            The private experience is currently protected by the production gate. Supabase Auth will replace this setup gate once the canonical database project is connected.
+            Complete the two Vercel environment variables in the deployment setup before enabling private production access. The public website remains available without login.
           </p>
         </div>
       </div>
