@@ -5,13 +5,13 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { LanguageSwitcher } from "@/components/language-switcher";
+import { LanguageSwitcherSafe } from "@/components/language-switcher-safe";
 
 const links = [
   ["About", "/about", "about"],
   ["Expertise", "/expertise", "expertise"],
   ["Experience", "/experience", "experience"],
-  ["Building", "#building", "building"],
+  ["Building", "/#building", "building"],
   ["Insights", "/insights", "insights"],
   ["Projects", "/projects", "projects"],
   ["Resume", "/resume", "resume"],
@@ -27,12 +27,12 @@ export function SiteNav() {
         <Link className="brand" href="/" aria-label="Yusuf B. Situmorang home">YUSUF<span>.</span></Link>
         <div className="nav-links">
           {links.map(([label, href, key]) => (
-            <Link className={((pathname === "/" && label === "About") || (href !== "#building" && pathname.startsWith(href))) ? "active" : ""} key={label} href={href} data-i18n={key}>{label}</Link>
+            <Link className={((pathname === "/" && label === "About") || (href !== "/#building" && pathname.startsWith(href))) ? "active" : ""} key={label} href={href} data-i18n={key}>{label}</Link>
           ))}
         </div>
         <div className="nav-actions">
           <Link className="nav-cta" href="/contact" data-i18n="contact">Contact Me</Link>
-          <LanguageSwitcher />
+          <LanguageSwitcherSafe />
           <ThemeToggle />
           <button className="icon-btn nav-menu-trigger" type="button" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} onClick={() => setOpen((v) => !v)}>
             {open ? <X size={22} /> : <Menu size={22} />}
@@ -45,7 +45,7 @@ export function SiteNav() {
             <Link key={label} href={href} onClick={() => setOpen(false)} data-i18n={key}>{label}</Link>
           ))}
           <div className="mobile-controls">
-            <LanguageSwitcher />
+            <LanguageSwitcherSafe />
             <ThemeToggle />
           </div>
           <Link className="mobile-nav-cta" href="/contact" onClick={() => setOpen(false)} data-i18n="contact">Contact Me</Link>
