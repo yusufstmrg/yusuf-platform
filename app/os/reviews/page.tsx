@@ -1,0 +1,25 @@
+import Link from "next/link";
+import { ArrowLeft, CalendarCheck2, Lightbulb, Scale, Trophy } from "lucide-react";
+import { requirePrivateDb } from "@/lib/os/server";
+
+export const dynamic = "force-dynamic";
+export const metadata = { title: "Reviews — Yusuf Personal OS", robots: { index: false, follow: false } };
+
+export default async function ReviewsPage() {
+  const { user, db } = await requirePrivateDb();
+  const [weekly, monthly, quarterly, decisions, lessons] = await Promise.all([
+    db`SELECT id, week_start, wins, misses, bottlenecks, lessons, next_priorities FROM public.weekly_reviews WHERE owner_id=${user.id}::uuid ORDER BY week_start DESC LIMIT 12`,
+    db`SELECT id, month_start, achievements, problems, insights, next_focus FROM public.monthly_reviews WHERE owner_id=${user.id}::uuid ORDER BY month_start DESC LIMIT 12`,
+    db`SELECT id, quarter_label, achievements, failures, strategy_changes, next_quarter_focus FROM public.quarterly_reviews WHERE owner_id=${user.id}::uuid ORDER BY created_at DESC LIMIT 8`,
+    db`SELECT id, title, rationale, chosen_option, outcome, decided_at FROM public.decisions WHERE owner_id=${user.id}::uuid ORDER BY decided_at DESC NULLS LAST, created_at DESC LIMIT 20`,
+    db`SELECT id, title, domain, lesson, source FROM public.lessons WHERE owner_id=${user.id}::uuid ORDER BY created_at DESC LIMIT 20`,
+  ]);
+  return <main className="os-shell"><div className="container">
+    <div className="actions" style={{marginTop:0}}><Link className="btn btn-dark" href="/os"><ArrowLeft size={15}/> Command Center</Link></div>
+    <div className="section-head" style={{marginTop:35}}><div><div className="kicker">Learning loop</div><h1 style={{fontSize:"clamp(44px,6vw,76px)"}}>Reviews & decisions.</h1></div><p className="section-lead">Convert experience into insight. Weekly, monthly and quarterly reviews close the loop between planning and reality.</p></div>
+    <div className="os-module-grid"><article className="card os-module"><CalendarCheck2 size={19}/><h3>{weekly.length} weekly reviews</h3><p>Short-cycle feedback on wins, misses, bottlenecks and next priorities.</p></article><article className="card os-module"><Trophy size={19}/><h3>{monthly.length} monthly reviews</h3><p>Pattern recognition across achievements, problems and next focus.</p></article><article className="card os-module"><Scale size={19}/><h3>{decisions.length} decisions logged</h3><p>Decision memory prevents repeated mistakes and preserves rationale.</p></article></div>
+    <section style={{marginTop:48}}><div className="section-head"><div><div className="kicker">Latest review cycle</div><h2>What happened.</h2></div></div><div className="timeline">{weekly.map((r:{id:string;week_start:string;wins:string|null;misses:string|null;bottlenecks:string|null;lessons:string|null;next_priorities:string|null})=><article className="timeline-item" key={r.id}><div className="period">Week {new Date(r.week_start).toLocaleDateString("en-GB")}</div><div><h3>Wins & misses</h3><p>{r.wins || "No wins captured yet."} {r.misses ? ` · Misses: ${r.misses}` : ""}</p><p style={{marginTop:8}}>{r.bottlenecks ? `Bottleneck: ${r.bottlenecks}. ` : ""}{r.next_priorities ? `Next: ${r.next_priorities}` : ""}</p></div></article>)}</div></section>
+    <section style={{marginTop:55}}><div className="section-head"><div><div className="kicker">Decision memory</div><h2>Why the choice was made.</h2></div></div><div className="timeline">{decisions.map((d:{id:string;title:string;rationale:string|null;chosen_option:string|null;outcome:string|null;decided_at:string|null})=><article className="timeline-item" key={d.id}><div className="period">{d.decided_at ? new Date(d.decided_at).toLocaleDateString("en-GB") : "undated"}</div><div><h3>{d.title}</h3><p>Chosen: {d.chosen_option || "—"} · {d.rationale || "Rationale not recorded."}</p><p style={{marginTop:8}}>Outcome: {d.outcome || "Not yet recorded."}</p></div></article>)}</div></section>
+    <section style={{marginTop:55}}><div className="section-head"><div><div className="kicker">Lessons</div><h2>Make experience reusable.</h2></div></div><div className="os-module-grid">{lessons.map((l:{id:string;title:string;domain:string|null;lesson:string;source:string|null})=><article className="card os-module" key={l.id}><Lightbulb size={18}/><h3>{l.title}</h3><p>{l.domain || "General"} · {l.lesson}</p><span className="os-module-link">{l.source || "Personal observation"}</span></article>)}</div></section>
+  </div></main>;
+}
