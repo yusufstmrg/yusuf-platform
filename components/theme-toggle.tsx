@@ -18,12 +18,16 @@ export function ThemeToggle() {
     setTheme(current);
   }, []);
 
-  function toggle() {
-    const next: Theme = theme === "dark" ? "light" : "dark";
+  function setDocumentTheme(next: Theme) {
     document.documentElement.dataset.theme = next;
     document.documentElement.style.colorScheme = next;
     window.localStorage.setItem("yusuf-theme", next);
+    window.dispatchEvent(new CustomEvent("yusuf-theme-change", { detail: next }));
     setTheme(next);
+  }
+
+  function toggle() {
+    setDocumentTheme(theme === "dark" ? "light" : "dark");
   }
 
   return (
