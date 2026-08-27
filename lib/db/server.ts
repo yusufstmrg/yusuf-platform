@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { neon } from "@neondatabase/serverless";
 
 let client: ReturnType<typeof neon> | null = null;
