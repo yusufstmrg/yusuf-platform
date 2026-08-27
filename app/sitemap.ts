@@ -1,14 +1,15 @@
 import type { MetadataRoute } from "next";
-import { building } from "@/lib/content";
+import { getDb } from "@/lib/db/server";
 
-function slugify(value: string) {
-  return value.toLowerCase().replace(/×/g, "x").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-}
-
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://yusuf-platform.vercel.app";
-  const projectUrls = building.map((item) => ({
-    url: `${baseUrl}/projects/${slugify(item.title)}`,
+  const db = getDb();
+  const projectRows = db
+    ? await db`SELECT public_slug, published_at FROM public.public_publications WHERE entity_type='project' ORDER BY published_at DESC LIMIT 100`
+    : [];
+  const projectUrls = projectRows.map((item: { public_slug: string; published_at: string }) => ({
+    url: `${baseUrl}/projects/${item.public_slug}`,
+    lastModified: new Date(item.published_at),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
