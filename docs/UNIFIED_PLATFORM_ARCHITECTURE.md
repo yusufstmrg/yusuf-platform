@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Yusuf Platform is designed as one platform with two secure experiences:
+Yusuf Platform is one platform with two secure experiences:
 
 - **Public Portfolio OS** — professional identity, experience, expertise, projects, case studies, insights, ventures and opportunities.
 - **Private Personal OS** — command center for life strategy, goals, execution, skills, career, proof, brand, network, business, wealth, purpose and reviews.
@@ -31,18 +31,21 @@ Public data must be an explicit projection of a private/shared object, not a raw
 
 ## Canonical stack
 
-- Next.js + TypeScript
+- Next.js 16 + TypeScript
 - Vercel
-- Supabase PostgreSQL
-- Supabase Auth
-- Supabase Storage
-- GitHub
+- Neon PostgreSQL 18
+- Neon Auth
+- Neon Data API / `@neondatabase/neon-js`
+- Neon serverless driver for server-only operations
+- Neon Object Storage when production evidence/media storage is required
+- GitHub + GitHub Actions
+- TanStack Query
 - Provider-agnostic AI interface (Gemini default for free-first strategy)
 
 ## Domain groups
 
 ### Identity
-`users`, `profiles`, `roles`, `public_profiles`
+`profiles`, Neon Auth `user`, roles, public profile projection
 
 ### Strategy
 `life_domains`, `goals`, `okrs`, `key_results`, `masterplan_items`, `sprints`
@@ -57,7 +60,7 @@ Public data must be an explicit projection of a private/shared object, not a raw
 `projects`, `portfolio_items`, `evidence`, `achievements`, `testimonials`
 
 ### Career
-`career_targets`, `applications`, `career_opportunities`, `career_readiness_snapshots`
+`career_targets`, `career_applications`, `career_opportunities`, `career_readiness_snapshots`
 
 ### Brand
 `social_accounts`, `content_pillars`, `content_items`, `content_metrics`
@@ -66,7 +69,7 @@ Public data must be an explicit projection of a private/shared object, not a raw
 `contacts`, `relationships`, `interactions`, `followups`
 
 ### Business
-`businesses`, `initiatives`, `leads`, `customers`, `deals`, `revenue_transactions`
+`businesses`, `business_initiatives`, `leads`, `customers`, `deals`, `revenue_transactions`
 
 ### Wealth
 `income`, `expenses`, `assets`, `liabilities`, `investments`, `net_worth_snapshots`, `fi_targets`
@@ -78,7 +81,7 @@ Public data must be an explicit projection of a private/shared object, not a raw
 `score_snapshots`, `ai_insights`, `ai_recommendations`, `next_best_actions`
 
 ### Publication
-`publication_records`, `publication_versions`, `visibility_rules`
+`publication_records`, `public_publications`, future `publication_versions`, `visibility_rules`
 
 ## AI boundary
 
@@ -100,9 +103,14 @@ Portfolio AI may use public data only. It must never query private workspace tab
 6. Set `published` only after explicit approval.
 7. Public routes read only published projections.
 
+## Authentication boundary
+
+Neon Auth is the canonical identity layer. The production Next.js app uses a fail-closed private route guard. When auth environment configuration is absent, private routes redirect to the setup/login gateway rather than rendering private content.
+
 ## Engineering rules
 
 - Do not publish invented metrics, clients, achievements, testimonials or outcomes.
 - Do not call a feature production-ready until functional, data, security, AI, UX, performance, testing, recovery, observability, documentation and packaging gates pass.
 - Domain logic must remain portable and not depend unnecessarily on builder-specific UI/runtime behavior.
 - Private data is private by default.
+- Canonical migrations must be version-controlled; the older `supabase/migrations/` directory is historical reference only and must not be applied to the Neon project.
