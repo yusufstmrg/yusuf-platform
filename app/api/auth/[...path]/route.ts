@@ -2,14 +2,20 @@ import { auth } from "@/lib/auth/server";
 
 export const dynamic = "force-dynamic";
 
-export async function GET(request: Request, context: { params: Promise<{ path: string[] }> }) {
-  if (!auth) return new Response("Authentication is not configured.", { status: 503 });
-  const handler = auth.handler();
-  return handler.GET(request, context);
+const unavailable = () =>
+  new Response("Authentication is not configured for this deployment.", {
+    status: 503,
+    headers: { "content-type": "text/plain; charset=utf-8" },
+  });
+
+export async function GET(request: Request) {
+  const handlers = auth?.handler();
+  if (!handlers) return unavailable();
+  return handlers.GET(request);
 }
 
-export async function POST(request: Request, context: { params: Promise<{ path: string[] }> }) {
-  if (!auth) return new Response("Authentication is not configured.", { status: 503 });
-  const handler = auth.handler();
-  return handler.POST(request, context);
+export async function POST(request: Request) {
+  const handlers = auth?.handler();
+  if (!handlers) return unavailable();
+  return handlers.POST(request);
 }
