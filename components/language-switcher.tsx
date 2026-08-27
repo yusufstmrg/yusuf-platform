@@ -2,6 +2,7 @@
 
 import { Languages } from "lucide-react";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const translations: Record<string, { en: string; id: string }> = {
   about: { en: "About", id: "Tentang" },
@@ -29,18 +30,27 @@ function applyLanguage(lang: "en" | "id") {
   });
   document.querySelectorAll<HTMLElement>("[data-i18n-placeholder]").forEach((node) => {
     const key = node.dataset.i18nPlaceholder;
-    if (key && translations[key]) node.setAttribute("aria-label", translations[key][lang]);
+    if (key && translations[key]) {
+      node.setAttribute("aria-label", translations[key][lang]);
+    }
   });
 }
 
 export function LanguageSwitcher() {
+  const pathname = usePathname();
   const [lang, setLang] = useState<"en" | "id">("en");
 
   useEffect(() => {
-    const saved = (window.localStorage.getItem("yusuf-language") as "en" | "id" | null) ?? "en";
-    setLang(saved);
-    applyLanguage(saved);
+    const saved = (window.localStorage.getItem("yusuf-language") as "en" | "id" | null);
+    const next = saved === "id" ? "id" : "en";
+    setLang(next);
+    applyLanguage(next);
   }, []);
+
+  useEffect(() => {
+    const saved = (window.localStorage.getItem("yusuf-language") as "en" | "id" | null);
+    applyLanguage(saved === "id" ? "id" : lang);
+  }, [pathname, lang]);
 
   function change(next: "en" | "id") {
     setLang(next);
@@ -50,10 +60,10 @@ export function LanguageSwitcher() {
 
   return (
     <div className="language-switcher" aria-label="Language selector">
-      <Languages size={15} />
-      <button type="button" className={lang === "en" ? "selected" : ""} onClick={() => change("en")}>EN</button>
+      <Languages size={15} aria-hidden="true" />
+      <button type="button" className={lang === "en" ? "selected" : ""} aria-pressed={lang === "en"} onClick={() => change("en")}>EN</button>
       <span>/</span>
-      <button type="button" className={lang === "id" ? "selected" : ""} onClick={() => change("id")}>ID</button>
+      <button type="button" className={lang === "id" ? "selected" : ""} aria-pressed={lang === "id"} onClick={() => change("id")}>ID</button>
     </div>
   );
 }
