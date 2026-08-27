@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   ArrowUpRight,
   Download,
@@ -64,7 +65,7 @@ export default function Home() {
               <a className="btn btn-secondary" href={whatsappMessage("general")} target="_blank" rel="noreferrer"><MessageCircle size={16} /> WhatsApp me</a>
             </div>
           </div>
-          <div className="hero-card reveal delay"><div className="hero-portrait"><img src="https://github.com/yusufstmrg.png?size=900" alt="Yusuf B. Situmorang" loading="eager" /><div className="portrait-shade" /><div className="portrait-frame" /><div className="portrait-caption"><strong>Build. Serve. Grow. Give.</strong><span>Finance • Business • Technology • Purpose</span></div></div></div>
+          <div className="hero-card reveal delay"><div className="hero-portrait"><Image src="https://github.com/yusufstmrg.png?size=900" alt="Yusuf B. Situmorang" width={900} height={900} priority sizes="(max-width: 900px) 520px, 36vw" /><div className="portrait-shade" /><div className="portrait-frame" /><div className="portrait-caption"><strong>Build. Serve. Grow. Give.</strong><span>Finance • Business • Technology • Purpose</span></div></div></div>
         </div>
       </section>
 
