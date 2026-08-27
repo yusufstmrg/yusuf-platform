@@ -12,7 +12,8 @@ import {
   Youtube,
 } from "lucide-react";
 import Link from "next/link";
-import { building, contentPillars, experience, expertise, profile } from "@/lib/content";\nimport { SiteNav } from "@/components/site-nav";
+import { building, contentPillars, experience, expertise, profile } from "@/lib/content";
+import { SiteNav } from "@/components/site-nav";
 import { WhatsappIntent, whatsappMessage } from "@/lib/whatsapp";
 
 const socials = [
