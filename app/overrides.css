@@ -294,3 +294,26 @@ html[data-theme="light"] .mobile-nav-cta{color:#9b6a17!important;border-color:rg
 
 .hero-proof-bar .proof-icon{display:grid;width:42px;height:42px;margin:0 0 12px;padding:0;color:var(--gold2);font-size:inherit;letter-spacing:normal;text-transform:none;background:rgba(228,189,106,.06)}
 .hero-proof-bar .proof-icon svg{display:block}
+
+
+/* Final cross-theme QA: readable controls, faithful portrait, deliberate light/dark states. */
+.hero-portrait img{object-fit:contain!important;object-position:center bottom!important;width:126%!important;height:126%!important;max-width:none!important;margin-left:-13%!important;filter:saturate(.96) contrast(1.03) drop-shadow(0 28px 46px rgba(0,0,0,.30))!important;}
+.hero-portrait{overflow:visible!important;}
+.portrait-frame{z-index:1!important;}
+.portrait-caption{z-index:3!important;}
+.btn-primary{color:#07121d!important;}
+.btn-primary svg{color:#07121d!important;}
+.dark-band .btn-secondary,.cta .btn-secondary{color:#fff!important;border-color:rgba(255,255,255,.28)!important;background:transparent!important;}
+.dark-band .btn-secondary:hover,.cta .btn-secondary:hover{background:rgba(255,255,255,.08)!important;}
+html[data-theme="light"] .section-white .btn-secondary{color:#162738!important;border-color:#9eacb7!important;}
+html[data-theme="light"] .section-white .btn-dark{color:#fff!important;}
+html[data-theme="light"] .what-i-do .section-lead,html[data-theme="light"] .what-i-do p{color:#b9c9d6!important;}
+html[data-theme="light"] .technology-section .tech-stack strong{color:#081522!important;}
+html[data-theme="light"] .technology-section .tech-stack p{color:#5f7080!important;}
+html[data-theme="light"] .footer a{color:#8ea0af!important;}
+html[data-theme="light"] .footer a:hover{color:#fff!important;}
+html[data-theme="light"] .mobile-nav-panel{box-shadow:0 18px 45px rgba(8,21,34,.12);}
+html[data-theme="light"] .mobile-nav-panel .icon-btn{color:#162738!important;}
+.language-switcher button:focus-visible,.icon-btn:focus-visible,.btn:focus-visible,.nav-links a:focus-visible{outline:2px solid var(--gold2);outline-offset:3px;}
+@media(max-width:900px){.hero-portrait img{width:132%!important;height:132%!important;margin-left:-16%!important;}}
+@media(max-width:560px){.hero-portrait img{width:140%!important;height:140%!important;margin-left:-20%!important;}}
