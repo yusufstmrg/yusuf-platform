@@ -24,10 +24,12 @@ Public-facing personal platform for **Yusuf B. Situmorang**, designed to evolve 
 
 ### Private Personal OS
 
-- `/login` — unified authentication gateway
-- `/os` — private command-center entry (locked until Supabase Auth is configured)
+- `/login` — secure gateway
+- `/auth/[path]` — Neon Auth views
+- `/os` — private command-center entry
+- `/os/quick-capture` — fast private capture workflow
 
-The private OS will manage life strategy, goals/OKR, masterplan, 90-day sprint, quick capture, skills, career, proof/evidence, personal brand, network, business, wealth, purpose, reviews and AI Chief of Staff.
+The private OS is planned around life strategy, goals/OKR, masterplan, 90-day sprint, quick capture, skills, career, proof/evidence, personal brand, network, business, wealth, purpose, reviews and AI Chief of Staff.
 
 ## Security principle
 
@@ -37,17 +39,23 @@ Publication states:
 
 `private -> draft -> ready_to_publish -> published -> archived`
 
-## Target architecture
+## Canonical architecture
 
 - Next.js + TypeScript
 - Vercel
-- Supabase PostgreSQL
-- Supabase Auth
-- Supabase Storage
+- Neon PostgreSQL
+- Neon Auth
+- Neon Data API
+- Neon Object Storage / object-storage abstraction
 - GitHub
+- TanStack Query
 - Provider-agnostic AI interface (Gemini default for the free-first strategy)
 
-The current Floot/PostgreSQL Private OS is treated as a migration/reference source, not the final canonical runtime. Migration and reconciliation are intentionally staged under `supabase/migrations/` and `docs/`.
+The current Floot/PostgreSQL Private OS is treated as a migration/reference source, not the final canonical runtime. Its data and workflows will be reconciled into the canonical Neon model before legacy cutover.
+
+## Authentication
+
+Neon Auth is provisioned on the canonical Neon project. The Next.js integration uses the official `@neondatabase/auth` and `@neondatabase/auth-ui` packages. Private production access remains fail-closed until the required deployment environment variables are configured.
 
 ## Quality gates
 
@@ -62,11 +70,18 @@ npm run lint
 npm run build
 ```
 
-Optional environment variable:
+Required production environment variables:
 
 ```bash
+NEON_AUTH_BASE_URL=https://<your-neon-auth-endpoint>/neondb/auth
+NEON_AUTH_COOKIE_SECRET=<random-secret-32-chars-or-more>
+NEXT_PUBLIC_NEON_AUTH_URL=https://<your-neon-auth-endpoint>/neondb/auth
+NEXT_PUBLIC_NEON_DATA_API_URL=https://<your-neon-data-api-endpoint>/neondb/rest/v1
+DATABASE_URL=<server-only-neon-postgres-connection-string>
 NEXT_PUBLIC_SITE_URL=https://your-domain.example
 ```
+
+Do not commit secrets. Use local `.env.local` and Vercel Environment Variables.
 
 ## Content integrity
 
