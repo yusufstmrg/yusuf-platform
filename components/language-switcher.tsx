@@ -95,7 +95,8 @@ function applyLanguage(lang: Lang) {
     if (!mapped) return;
     const leading = original.match(/^\s*/)?.[0] ?? "";
     const trailing = original.match(/\s*$/)?.[0] ?? "";
-    node.textContent = leading + mapped + trailing;
+    const nextText = leading + mapped + trailing;
+    if (node.textContent !== nextText) node.textContent = nextText;
   });
 }
 
@@ -109,7 +110,10 @@ export function LanguageSwitcher() {
     setLang(next);
     applyLanguage(next);
 
-    const observer = new MutationObserver(() => applyLanguage(next));
+    const observer = new MutationObserver(() => {
+      const current = window.localStorage.getItem("yusuf-language") === "id" ? "id" : "en";
+      applyLanguage(current);
+    });
     observer.observe(document.body, { childList: true, subtree: true, characterData: true });
     return () => observer.disconnect();
   }, [pathname]);
