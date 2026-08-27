@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, BookOpen, Layers3, Target, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Layers3 } from "lucide-react";
 import { requirePrivateDb } from "@/lib/os/server";
 
 export const dynamic = "force-dynamic";
