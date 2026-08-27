@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowLeft, BrainCircuit, CheckCircle2, Lightbulb, Zap } from "lucide-react";
+import { ArrowLeft, BrainCircuit, Lightbulb, Zap } from "lucide-react";
 import { requirePrivateDb } from "@/lib/os/server";
+import { RefreshIntelligenceButton } from "./refresh-button";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Intelligence — Yusuf Personal OS", robots: { index: false, follow: false } };
@@ -15,7 +16,7 @@ export default async function IntelligencePage() {
   ]);
   const s=scores[0];
   return <main className="os-shell"><div className="container">
-    <div className="actions" style={{marginTop:0}}><Link className="btn btn-dark" href="/os"><ArrowLeft size={15}/> Command Center</Link></div>
+    <div className="actions" style={{marginTop:0,justifyContent:"space-between"}}><div><Link className="btn btn-dark" href="/os"><ArrowLeft size={15}/> Command Center</Link></div><RefreshIntelligenceButton /></div>
     <div className="section-head" style={{marginTop:35}}><div><div className="kicker">Phase 4 · Intelligence</div><h1 style={{fontSize:"clamp(44px,6vw,76px)"}}>AI intelligence layer.</h1></div><p className="section-lead">A decision-support layer that turns private workspace signals into insights and next actions. Yusuf remains the decision maker.</p></div>
     <div className="os-hero-grid" style={{width:"100%",marginTop:0}}><article className="os-highlight"><span className="kicker">Next best actions</span><h2>{actions.length} queued.</h2><p>Actions are ranked by expected impact, effort and priority. The system should surface leverage, not create noise.</p></article><article className="os-status"><div><span className="kicker">Personal value</span><strong>{s ? Number(s.personal_value).toFixed(1) : "Not measured"}</strong><p>{s ? `Latest snapshot ${new Date(s.snapshot_date).toLocaleDateString("en-GB")}` : "Capture a score snapshot after enough evidence exists."}</p></div><div className="os-stat-row"><span><small>Insights</small><b>{insights.length}</b></span><span><small>Recommendations</small><b>{recs.length}</b></span></div></article></div>
     {s && <section style={{marginTop:48}}><div className="section-head"><div><div className="kicker">Value score</div><h2>Multi-dimensional signal.</h2></div></div><div className="os-module-grid">{[["Capability",s.capability],["Proof",s.proof],["Distribution",s.distribution],["Network",s.network],["Commercialization",s.commercialization],["Ownership",s.ownership]].map(([k,v])=><article className="card os-module" key={k}><BrainCircuit size={18}/><h3>{k}</h3><p style={{fontSize:28,fontFamily:"Manrope",color:"var(--ink)",fontWeight:800}}>{Number(v).toFixed(1)}</p></article>)}</div></section>}
