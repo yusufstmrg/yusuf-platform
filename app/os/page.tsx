@@ -1,6 +1,10 @@
 import Link from "next/link";
-import { ArrowUpRight, BriefcaseBusiness, CircleGauge, Coins, Flag, Layers3, ListChecks, Sparkles, Target, UserRoundCheck } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, BriefcaseBusiness, CircleGauge, Coins, Flag, Layers3, ListChecks, Sparkles, Target, UserRoundCheck } from "lucide-react";
+import { UserButton } from "@neondatabase/auth-ui";
+import { redirect } from "next/navigation";
+import { auth } from "@/lib/auth/server";
 
+export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Personal OS — Yusuf B. Situmorang",
   description: "Private Yusuf Personal OS command center.",
@@ -19,55 +23,58 @@ const modules = [
   ["Reviews", "Weekly, monthly and quarterly reflection", UserRoundCheck],
 ] as const;
 
-export default function PersonalOsPage() {
+export default async function PersonalOsPage() {
+  if (!auth) redirect("/login?reason=auth_setup");
+
+  const { session, user } = await auth.getSession();
+  if (!session || !user) redirect("/auth/sign-in");
+
   return (
-    <main className="section section-white">
-      <div className="container">
-        <div className="actions" style={{ marginTop: 0, marginBottom: 42 }}>
-          <Link className="btn btn-dark" href="/"><ArrowUpRight size={15} style={{ transform: "rotate(225deg)" }} /> Public Profile</Link>
+    <main className="os-shell">
+      <header className="os-topbar">
+        <div>
+          <Link className="text-link" href="/"><ArrowLeft size={15} /> Public profile</Link>
+          <div className="kicker" style={{ marginTop: 20 }}>Yusuf Personal OS</div>
+          <h1>Command your next move.</h1>
+          <p className="section-lead">Private command center for turning strategy into execution, execution into proof, and proof into higher personal value, opportunity and freedom.</p>
         </div>
+        <div className="os-user"><div><strong>{user.name || "Yusuf"}</strong><span>{user.email}</span></div><UserButton /></div>
+      </header>
 
-        <div className="section-head">
-          <div>
-            <div className="kicker">Private Personal OS</div>
-            <h1 style={{ fontSize: "clamp(42px, 7vw, 76px)" }}>Command your next move.</h1>
-          </div>
-          <p className="section-lead">
-            A private operating system for turning strategy into execution, execution into proof, and proof into higher personal value, commercial opportunity and freedom.
-          </p>
-        </div>
+      <section className="os-hero-grid">
+        <article className="os-highlight">
+          <span className="kicker">Today</span>
+          <h2>Make progress visible.</h2>
+          <p>Start with one meaningful action. The workspace will progressively connect goals, skills, projects, proof, business and wealth data into one operating loop.</p>
+          <div className="actions"><Link className="btn btn-dark" href="/os/quick-capture">Quick Capture <ArrowUpRight size={15} /></Link><Link className="btn btn-secondary" href="/projects">View public proof <ArrowUpRight size={15} /></Link></div>
+        </article>
+        <article className="os-status">
+          <div><span className="kicker">System state</span><strong>Identity verified</strong><p>Neon Auth is active for this session. Private records remain owner-scoped and public publishing is explicit.</p></div>
+          <div className="os-stat-row"><span><small>Personal Value</small><b>Not measured</b></span><span><small>90-Day Sprint</small><b>Ready to configure</b></span></div>
+        </article>
+      </section>
 
-        <div className="card-grid" style={{ marginTop: 30 }}>
-          <div className="card" style={{ gridColumn: "span 2" }}>
-            <div className="kicker">Status</div>
-            <h2 style={{ marginTop: 8 }}>Authentication required</h2>
-            <p>Supabase Auth is the next infrastructure gate. Until it is connected, this route remains inaccessible in production through the middleware safety gate.</p>
-          </div>
-        </div>
-
-        <div className="section-head" style={{ marginTop: 64 }}>
-          <div><div className="kicker">Core workspace</div><h2>What the OS will manage.</h2></div>
-          <p className="section-lead">Built from the Master Integrated Roadmap and designed as one unified personal platform.</p>
-        </div>
-
-        <div className="card-grid" style={{ marginTop: 28 }}>
+      <section style={{ marginTop: 48 }}>
+        <div className="section-head"><div><div className="kicker">Core workspace</div><h2>What the OS will manage.</h2></div><p className="section-lead">Built from the Master Integrated Roadmap. Modules become fully data-driven as each domain is connected.</p></div>
+        <div className="os-module-grid">
           {modules.map(([title, text, Icon]) => (
-            <div className="card" key={title}>
+            <article className="card os-module" key={title}>
               <Icon size={19} />
-              <h3 style={{ marginTop: 16 }}>{title}</h3>
+              <h3>{title}</h3>
               <p>{text}</p>
-            </div>
+              <span className="os-module-link">Open module <ArrowUpRight size={14} /></span>
+            </article>
           ))}
         </div>
+      </section>
 
-        <section className="cta" style={{ marginTop: 70, borderRadius: 26 }}>
-          <div className="container" style={{ padding: "56px 0" }}>
-            <div className="kicker">Operating loop</div>
-            <h2>Plan → Execute → Capture → Prove → Measure → Review → Replan.</h2>
-            <p>The AI layer will recommend the highest-leverage next actions. Yusuf remains the decision maker.</p>
-          </div>
-        </section>
-      </div>
+      <section className="cta" style={{ marginTop: 70, borderRadius: 26 }}>
+        <div className="container" style={{ padding: "56px 0" }}>
+          <div className="kicker">Operating loop</div>
+          <h2>Plan → Execute → Capture → Prove → Measure → Review → Replan.</h2>
+          <p>The AI layer will recommend high-leverage next actions. Yusuf remains the decision maker.</p>
+        </div>
+      </section>
     </main>
   );
 }
