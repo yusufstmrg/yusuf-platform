@@ -115,3 +115,72 @@
 
 .site-nav .nav-links a.active{color:#fff;position:relative}.site-nav .nav-links a.active:after{content:"";position:absolute;left:0;right:0;bottom:-25px;height:2px;background:var(--gold)}
 @media(max-width:900px){.site-nav .nav-links a.active:after{display:none}}
+
+
+/* Yusuf OS premium interaction layer */
+.nav-menu-trigger{display:none}
+.language-switcher{display:flex;align-items:center;gap:5px;padding:0 8px;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:#aebdca;background:rgba(255,255,255,.03);font-size:10px;font-weight:800;letter-spacing:.08em}
+.language-switcher button{border:0;background:transparent;color:inherit;padding:6px 2px;cursor:pointer;font:800 10px 'DM Sans',sans-serif}
+.language-switcher button.selected{color:var(--gold2)}
+.language-switcher span{opacity:.45}
+.mobile-controls{display:flex;align-items:center;gap:10px;grid-column:1/-1;padding:8px 10px 12px}
+.presence-grid{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.presence-card{display:grid;grid-template-columns:36px 1fr 16px;gap:12px;align-items:center;padding:22px 18px;border-right:1px solid var(--line);transition:transform .3s ease,background .3s ease,border-color .3s ease}
+.presence-card:last-child{border-right:0}
+.presence-card:hover{transform:translateY(-4px);background:rgba(201,151,62,.06)}
+.presence-icon{width:36px;height:36px;display:grid;place-items:center;border:1px solid rgba(201,151,62,.32);border-radius:12px;color:var(--gold)}
+.presence-card strong{display:block;font:700 13px Manrope,sans-serif}
+.presence-card small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+html[data-theme="dark"] body{background:#020b14;color:#f4f7fa}
+html[data-theme="dark"] .section-white,html[data-theme="dark"] .technology-section{background:#06111d;color:#f4f7fa}
+html[data-theme="dark"] .section-white .section-lead,html[data-theme="dark"] .section-white p{color:#aebdca}
+html[data-theme="dark"] .section-white .statement-stack article,html[data-theme="dark"] .section-white .expertise-row{border-color:rgba(255,255,255,.12)}
+html[data-theme="dark"] .section-white .expertise-row h3,html[data-theme="dark"] .section-white .statement-stack h3,html[data-theme="dark"] .section-white .proof-grid h3{color:#f4f7fa}
+html[data-theme="dark"] .section-white .proof-grid{border-color:rgba(255,255,255,.12)}
+html[data-theme="dark"] .section-white .social-grid,html[data-theme="dark"] .section-white .social{border-color:rgba(255,255,255,.12)}
+html[data-theme="dark"] .section-white .social:hover{background:rgba(255,255,255,.04)}
+html[data-theme="dark"] .what-i-do{background:#020b14}
+html[data-theme="dark"] .digital-presence-section{background:#020b14;color:#fff}
+html[data-theme="dark"] .digital-presence-section .section-lead{color:#aebdca}
+html[data-theme="dark"] .technology-section{background:#071522}
+html[data-theme="dark"] .technology-section .section-lead,html[data-theme="dark"] .technology-section .tech-stack p{color:#aebdca}
+html[data-theme="dark"] .technology-section .tech-stack,html[data-theme="dark"] .technology-section .tech-stack article{border-color:rgba(255,255,255,.12)}
+html[data-theme="dark"] .footer{background:#01070d}
+html[data-theme="dark"] .btn-dark{background:#0d2033;color:#fff;border-color:rgba(255,255,255,.12)}
+html[data-theme="dark"] .btn-secondary{color:#f4f7fa}
+html[data-theme="dark"] .pill{border-color:rgba(255,255,255,.16);color:#d3dee7}
+html[data-theme="dark"] .presence-card{border-color:rgba(255,255,255,.12);color:#f4f7fa}
+html[data-theme="dark"] .presence-card small{color:#aebdca}
+
+html[data-theme="light"] body{background:#f7f9fa;color:#081522}
+html[data-theme="light"] .site-nav{background:rgba(247,249,250,.88);color:#081522;border-bottom-color:#dfe6eb}
+html[data-theme="light"] .site-nav .brand{color:#081522}
+html[data-theme="light"] .site-nav .nav-links a{color:#607080}
+html[data-theme="light"] .site-nav .nav-links a:hover,html[data-theme="light"] .site-nav .nav-links a.active{color:#081522}
+html[data-theme="light"] .icon-btn{color:#081522}
+html[data-theme="light"] .language-switcher{border-color:#d7e0e6;color:#607080;background:#fff}
+html[data-theme="light"] .section-white{background:#fff;color:#081522}
+html[data-theme="light"] .technology-section{background:#eef2f4;color:#081522}
+html[data-theme="light"] .digital-presence-section{background:#f7f9fa;color:#081522}
+html[data-theme="light"] .what-i-do{background:#071522;color:#fff}
+html[data-theme="light"] .footer{background:#020b14;color:#fff}
+html[data-theme="light"] .presence-card:hover{background:rgba(201,151,62,.07)}
+@media(max-width:900px){
+  .nav-menu-trigger{display:grid}
+  .presence-grid{grid-template-columns:repeat(2,1fr)}
+  .presence-card:nth-child(2n){border-right:0}
+  .presence-card:nth-child(-n+3){border-bottom:1px solid var(--line)}
+}
+@media(max-width:560px){
+  .presence-grid{grid-template-columns:1fr}
+  .presence-card{border-right:0!important;border-bottom:1px solid var(--line)!important}
+  .presence-card:last-child{border-bottom:0!important}
+}
+@media(prefers-reduced-motion:no-preference){
+  .hero-orbit{animation:orbitPulse 9s ease-in-out infinite}
+  .hero-orbit-two{animation-delay:-3s}
+  .hero-card{animation:heroFloat 7s ease-in-out infinite}
+  .presence-card,.what-grid article,.build-item{will-change:transform}
+}
+@keyframes orbitPulse{0%,100%{opacity:.45;transform:scale(.98) rotate(0deg)}50%{opacity:1;transform:scale(1.02) rotate(3deg)}}
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
