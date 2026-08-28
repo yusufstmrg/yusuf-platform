@@ -64,7 +64,7 @@ export default function Home() {
               <a className="btn btn-secondary" href={whatsappMessage("general")} target="_blank" rel="noreferrer"><MessageCircle size={16} /> <span data-i18n="whatsapp">WhatsApp Me</span></a>
             </div>
           </div>
-          <div className="hero-card reveal delay"><div className="hero-portrait"><img src="https://avatars.githubusercontent.com/u/313960239?v=4" alt="Yusuf B. Situmorang" width={900} height={900} loading="eager" /><div className="portrait-shade" /><div className="portrait-frame" /><div className="portrait-caption"><strong>Build. Serve. Grow. Give.</strong><span>Finance • Business • Technology • Purpose</span></div></div></div>
+          <div className="hero-card reveal delay"><div className="hero-portrait"><img src="/yusuf-portrait.webp" alt="Yusuf B. Situmorang" width={700} height={997} loading="eager" /><div className="portrait-shade" /><div className="portrait-frame" /><div className="portrait-caption"><strong>Build. Serve. Grow. Give.</strong><span>Finance • Business • Technology • Purpose</span></div></div></div>
         </div>
 
         <div className="hero-proof-bar reveal">
