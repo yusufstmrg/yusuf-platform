@@ -16,9 +16,12 @@ jobs:
       - name: Validate health response
         run: grep -q '"ok":true' /tmp/health.json
       - name: Check robots policy
+        run: curl --fail --silent --show-error --location --max-time 20 https://yusuf-platform.vercel.app/robots.txt | grep -q '/os'
+      - name: Check private route is protected
         run: |
-          curl --fail --silent --show-error --location --max-time 20 https://yusuf-platform.vercel.app/robots.txt | grep -q '/os'
-      - name: Check private route is not public
-        run: |
-          code=$(curl --silent --show-error --location --output /dev/null --write-out '%{http_code}' --max-time 20 https://yusuf-platform.vercel.app/os)
-          test "$code" != "200"
+          code=$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' --max-time 20 -D /tmp/os-headers https://yusuf-platform.vercel.app/os)
+          case "$code" in
+            3*|401|403) ;;
+            *) echo "Expected protected /os response, got HTTP $code"; exit 1 ;;
+          esac
+          grep -qiE '^location: .*/(login|auth/)' /tmp/os-headers || { echo "Protected /os response did not redirect to auth"; cat /tmp/os-headers; exit 1; }
