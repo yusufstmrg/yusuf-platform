@@ -51,9 +51,11 @@ export const experience = [
 
 export const building = [
   { tag: "PERSONAL OS", title: "Yusuf OS", text: "A personal operating system for career capital, personal value, wealth, execution and purpose—designed around evidence, metrics and AI-assisted decisions." },
-  { tag: "BUSINESS", title: "BuildUp", text: "A business advisory direction focused on finance, accounting, tax, strategy, risk and practical operating systems for businesses." },
+  { tag: "ADVISORY", title: "BuildUp", text: "A business advisory direction focused on finance, accounting, tax, strategy, risk and practical operating systems for businesses." },
   { tag: "TRADE", title: "Tradevance Global Resources", text: "An international trading initiative connecting resources, suppliers and buyers with a long-term ambition to become a trusted trading partner." },
-  { tag: "PROOF OF WORK", title: "Finance × AI Portfolio", text: "A growing body of practical projects, analyses, dashboards and experiments that documents what I can build—not just what I say I know." },
+  { tag: "HEALTH", title: "GoHealth", text: "A healthcare platform initiative designed to make health access, information and useful services easier to discover and navigate." },
+  { tag: "CONSUMER", title: "RuangPilih", text: "An affiliate intelligence and commerce discovery platform designed around structured product data, brand mapping, recommendation and monetization." },
+  { tag: "PROTECTION", title: "Safe Future", text: "A financial protection and education initiative focused on helping people understand risk, protection, financial planning and long-term security." },
 ];
 
 export const contentPillars = ["Finance & Money","Business & Entrepreneurship","AI & Technology","Career & Growth","Life, Values & Purpose"];
