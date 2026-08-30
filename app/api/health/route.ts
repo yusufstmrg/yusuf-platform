@@ -7,17 +7,20 @@ export async function GET() {
   const db = getDb();
   if (!db) {
     return NextResponse.json(
-      { ok: true, service: "yusuf-public-os", app: "ok", database: "not_configured", degraded: true, timestamp: new Date().toISOString() },
-      { headers: { "cache-control": "no-store" } },
+      { ok: false, service: "yusuf-public-os", app: "ok", database: "not_configured", degraded: true, timestamp: new Date().toISOString() },
+      { status: 503, headers: { "cache-control": "no-store" } },
     );
   }
   try {
     await db`SELECT 1`;
-    return NextResponse.json({ ok: true, service: "yusuf-public-os", app: "ok", database: "ok", degraded: false, timestamp: new Date().toISOString() }, { headers: { "cache-control": "no-store" } });
+    return NextResponse.json(
+      { ok: true, service: "yusuf-public-os", app: "ok", database: "ok", degraded: false, timestamp: new Date().toISOString() },
+      { headers: { "cache-control": "no-store" } },
+    );
   } catch {
     return NextResponse.json(
-      { ok: true, service: "yusuf-public-os", app: "ok", database: "unavailable", degraded: true, timestamp: new Date().toISOString() },
-      { headers: { "cache-control": "no-store" } },
+      { ok: false, service: "yusuf-public-os", app: "ok", database: "unavailable", degraded: true, timestamp: new Date().toISOString() },
+      { status: 503, headers: { "cache-control": "no-store" } },
     );
   }
 }
