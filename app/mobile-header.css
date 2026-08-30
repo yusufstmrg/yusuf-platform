@@ -1,0 +1,12 @@
+/* Mobile header controls must remain usable without opening the menu. */
+@media (max-width: 900px){
+  .nav-actions>.icon-btn:not(.nav-menu-trigger){
+    display:grid !important;
+    width:34px;
+    height:34px;
+    place-items:center;
+    flex:0 0 auto;
+  }
+  .nav-actions>.language-switcher{display:flex !important;align-items:center;gap:4px}
+  .nav-actions{gap:7px}
+}
