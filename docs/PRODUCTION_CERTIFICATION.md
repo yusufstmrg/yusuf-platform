@@ -31,6 +31,7 @@ Configure these in Vercel Production without placing secrets in source control:
 - `DATABASE_URL` — Neon production connection string.
 - `NEON_AUTH_BASE_URL` — Neon Auth base URL.
 - `NEON_AUTH_COOKIE_SECRET` — strong random production secret.
+- `NEXT_PUBLIC_AUTH_URL` — browser-facing Neon Auth URL used by the official auth client.
 - `NEXT_PUBLIC_SITE_URL` — canonical public site URL.
 
 Optional AI provider configuration should only be enabled after the provider key is stored as a Vercel secret.

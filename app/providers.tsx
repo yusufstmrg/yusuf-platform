@@ -12,6 +12,9 @@ import { authClient } from "@/lib/auth/client";
 export function Providers({ children }: { children: ReactNode }) {
   const router = useRouter();
   const [queryClient] = useState(() => new QueryClient());
+  const content = <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+
+  if (!authClient) return content;
 
   return (
     <NeonAuthUIProvider
@@ -25,7 +28,7 @@ export function Providers({ children }: { children: ReactNode }) {
       Link={Link}
       organization={{}}
     >
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      {content}
     </NeonAuthUIProvider>
   );
 }

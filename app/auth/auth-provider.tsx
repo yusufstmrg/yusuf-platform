@@ -8,6 +8,8 @@ import Link from "next/link";
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
 
+  if (!authClient) return <>{children}</>;
+
   return (
     <NeonAuthUIProvider
       authClient={authClient}

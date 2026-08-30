@@ -41,9 +41,9 @@ export default function LoginPage() {
         </div>
 
         <div className="notice" style={{ marginTop: 28, padding: 20, border: "1px solid rgba(17,37,54,.14)", borderRadius: 18, background: "#f6f8fa" }}>
-          <strong>Neon Auth is now the authentication foundation.</strong>
+          <strong>Private access is protected by Neon Auth.</strong>
           <p style={{ margin: "8px 0 0" }}>
-            Complete the two Vercel environment variables in the deployment setup before enabling private production access. The public website remains available without login.
+            The public website remains available without login. Private access becomes active after the production identity, cookie secret and database connection are configured in Vercel.
           </p>
         </div>
       </div>

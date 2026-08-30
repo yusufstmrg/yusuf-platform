@@ -1,4 +1,5 @@
 import { ArrowUpRight, Briefcase, Building2, Calculator, Download, Github, Heart, Linkedin, Instagram, MessageCircle, Music2, Play, Sparkles, Target, TrendingUp, Youtube } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { building, contentPillars, credibility, experience, expertise, highlights, profile } from "@/lib/content";
 import { SiteNav } from "@/components/site-nav";
@@ -44,7 +45,7 @@ export default function Home() {
         </div>
         <div className="hero-card reveal delay">
           <div className="hero-portrait">
-            <img src="/yusuf-portrait-final.webp" alt="Yusuf B. Situmorang" width="552" height="900" loading="eager" decoding="async" fetchPriority="high"/>
+            <Image src="/yusuf-portrait-final.webp" alt="Yusuf B. Situmorang" width={552} height={900} priority sizes="(max-width: 900px) 86vw, 552px"/>
             <div className="portrait-glow" aria-hidden="true"/><div className="portrait-frame" aria-hidden="true"/>
             <div className="portrait-caption"><strong>Build. Serve. Grow. Give.</strong><span>Finance • Business • Technology • Purpose</span></div>
           </div>

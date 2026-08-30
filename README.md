@@ -75,11 +75,13 @@ Required production environment variables:
 ```bash
 NEON_AUTH_BASE_URL=https://<your-neon-auth-endpoint>/neondb/auth
 NEON_AUTH_COOKIE_SECRET=<random-secret-32-chars-or-more>
-NEXT_PUBLIC_NEON_AUTH_URL=https://<your-neon-auth-endpoint>/neondb/auth
-NEXT_PUBLIC_NEON_DATA_API_URL=https://<your-neon-data-api-endpoint>/neondb/rest/v1
+NEXT_PUBLIC_AUTH_URL=https://<your-neon-auth-endpoint>/neondb/auth
 DATABASE_URL=<server-only-neon-postgres-connection-string>
 NEXT_PUBLIC_SITE_URL=https://your-domain.example
 ```
+
+`NEXT_PUBLIC_NEON_DATA_API_URL` is optional legacy configuration and is not
+used by the current server-rendered runtime.
 
 Do not commit secrets. Use local `.env.local` and Vercel Environment Variables.
 
