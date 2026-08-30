@@ -1,7 +1,7 @@
 "use client";
 
 import { Languages } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 
 const idByEnglish: Record<string,string> = {
   "About":"Tentang","Expertise":"Keahlian","Experience":"Pengalaman","Building":"Membangun","Insights":"Insight","Projects":"Proyek","Resume":"CV","Contact Me":"Hubungi Saya",
@@ -18,35 +18,42 @@ const keyMap: Record<string,[string,string]> = {
   explore:["Explore My Work","Jelajahi Karya Saya"], whatsapp:["WhatsApp Me","WhatsApp Saya"], story:["Read My Story","Baca Cerita Saya"], exploreExpertise:["Explore Expertise","Jelajahi Keahlian"], career:["View Career Journey","Lihat Perjalanan Karier"], resumeView:["View My Resume","Lihat CV Saya"], insightsHub:["Open Insights Hub","Buka Pusat Insight"]
 };
 const enById = Object.fromEntries(Object.entries(idByEnglish).map(([en,id])=>[id,en]));
+const getLanguage = () => (typeof window !== "undefined" && window.localStorage.getItem("yusuf-language")==="id" ? "id" : "en") as "en"|"id";
 
+function subscribeLanguage(onStoreChange:()=>void){
+  window.addEventListener("yusuf-language-change",onStoreChange);
+  window.addEventListener("storage",onStoreChange);
+  return()=>{window.removeEventListener("yusuf-language-change",onStoreChange);window.removeEventListener("storage",onStoreChange);};
+}
 function translateDocument(lang:"en"|"id"){
   document.documentElement.lang=lang;
   const toEnglish=(value:string)=>idByEnglish[value]?value:(enById[value]??value);
-  document.querySelectorAll<HTMLElement>("[data-i18n]").forEach(node=>{ const pair=node.dataset.i18n?keyMap[node.dataset.i18n]:undefined; if(pair) node.textContent=pair[lang==="en"?0:1]; });
+  document.querySelectorAll<HTMLElement>("[data-i18n]").forEach(node=>{const pair=node.dataset.i18n?keyMap[node.dataset.i18n]:undefined;if(pair)node.textContent=pair[lang==="en"?0:1];});
   document.querySelectorAll<HTMLElement>("body *").forEach(node=>{
-    if(node.children.length!==0 || node.hasAttribute("data-i18n")) return;
+    if(node.children.length!==0||node.hasAttribute("data-i18n"))return;
     const stored=node.dataset.yusufI18nOriginal;
     const english=toEnglish(stored??node.textContent?.trim()??"");
-    if(!english || english.length>240) return;
+    if(!english||english.length>240)return;
     node.dataset.yusufI18nOriginal=english;
-    const translated=lang==="id" ? idByEnglish[english] : english;
-    if(translated && translated!==node.textContent) node.textContent=translated;
+    const translated=lang==="id"?idByEnglish[english]:english;
+    if(translated&&translated!==node.textContent)node.textContent=translated;
   });
 }
 
 export function LanguageSwitcher(){
-  const [lang,setLang]=useState<"en"|"id">("en");
-  const observerRef=useRef<MutationObserver|null>(null);
-  const applying=useRef(false);
+  const lang=useSyncExternalStore(subscribeLanguage,getLanguage,()=> "en" as const);
   useEffect(()=>{
-    const initial=window.localStorage.getItem("yusuf-language")==="id"?"id":"en";
-    setLang(initial); translateDocument(initial);
-    const observer=new MutationObserver(()=>{ if(applying.current)return; observerRef.current?.disconnect(); applying.current=true; translateDocument(initialRef.current); applying.current=false; observerRef.current?.observe(document.body,{childList:true,subtree:true}); });
-    observerRef.current=observer; observer.observe(document.body,{childList:true,subtree:true});
+    let applying=false;
+    const apply=()=>{if(applying)return;applying=true;translateDocument(getLanguage());applying=false;};
+    apply();
+    const observer=new MutationObserver(apply);
+    observer.observe(document.body,{childList:true,subtree:true});
     return()=>observer.disconnect();
   },[]);
-  const initialRef=useRef<"en"|"id">("en");
-  useEffect(()=>{ initialRef.current=lang; },[lang]);
-  function change(next:"en"|"id"){ initialRef.current=next; setLang(next); localStorage.setItem("yusuf-language",next); observerRef.current?.disconnect(); applying.current=true; translateDocument(next); applying.current=false; if(document.body)observerRef.current?.observe(document.body,{childList:true,subtree:true}); }
+  function change(next:"en"|"id"){
+    window.localStorage.setItem("yusuf-language",next);
+    translateDocument(next);
+    window.dispatchEvent(new Event("yusuf-language-change"));
+  }
   return <div className="language-switcher" aria-label="Language selector"><Languages size={14}/><button type="button" className={lang==="en"?"selected":""} aria-pressed={lang==="en"} onClick={()=>change("en")}>EN</button><span>/</span><button type="button" className={lang==="id"?"selected":""} aria-pressed={lang==="id"} onClick={()=>change("id")}>ID</button></div>;
 }
