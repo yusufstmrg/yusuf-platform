@@ -1,0 +1,18 @@
+/* Production visual fixes: verified portrait sizing and mobile header controls. */
+.hero-portrait{position:relative!important;display:flex!important;align-items:flex-end!important;justify-content:center!important;overflow:hidden!important;background:radial-gradient(circle at 50% 30%,rgba(228,189,106,.18),transparent 34%),linear-gradient(160deg,#102f4f,#071725 72%,#050f19)!important}
+.hero-portrait img{position:relative!important;inset:auto!important;display:block!important;width:auto!important;height:100%!important;max-width:100%!important;object-fit:contain!important;object-position:center bottom!important;filter:none!important;z-index:1!important}
+.portrait-glow{z-index:0!important}.portrait-frame{z-index:2!important}.portrait-caption{z-index:3!important}
+@media(max-width:900px){
+ .nav-actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:7px!important;min-width:0!important}
+ .nav-actions>.language-switcher{display:flex!important;align-items:center!important;flex:0 0 auto!important}
+ .nav-actions>.icon-btn{display:grid!important;place-items:center!important;width:34px!important;height:34px!important;min-width:34px!important;flex:0 0 34px!important;visibility:visible!important;opacity:1!important}
+ .nav-actions>.icon-btn:not(.nav-menu-trigger){display:grid!important}
+ .nav-menu-trigger{display:grid!important}
+}
+@media(max-width:560px){
+ .hero-card{max-width:none!important;width:100%!important;padding:10px!important;border-radius:26px!important}
+ .hero-portrait{height:390px!important;border-radius:20px!important}
+ .hero-portrait img{height:100%!important;width:auto!important;max-width:94%!important}
+ .nav-inner{height:64px!important}
+ .nav-links{display:none!important}
+}
