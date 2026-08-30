@@ -4,6 +4,7 @@ import "./globals.css";
 import "./overrides.css";
 import "./production-fixes.css";
 import "./theme-hardening.css";
+import "./mobile-header.css";
 import { Providers } from "./providers";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://yusuf-platform.vercel.app";
