@@ -48,10 +48,16 @@ html[data-theme="dark"] .large-mark{color:rgba(255,255,255,.09)}
 html[data-theme="dark"] .credibility-strip span{color:var(--text-muted);border-color:var(--border)}
 /* Buttons */
 .btn:focus-visible,.icon-btn:focus-visible,.language-switcher button:focus-visible,a:focus-visible{outline:3px solid color-mix(in srgb,var(--focus) 55%,transparent);outline-offset:3px}
+.btn-secondary{border-color:var(--border);color:var(--text-strong);background:transparent}
+.btn-secondary:hover{background:var(--surface-2);color:var(--text-strong)}
+html[data-theme="dark"] .btn-secondary{border-color:rgba(255,255,255,.25);color:#f5f8fb}
+html[data-theme="dark"] .btn-secondary:hover{background:rgba(255,255,255,.08);color:#fff}
+.hero .btn-secondary,.dark-band .btn-secondary,.cta .btn-secondary{border-color:rgba(255,255,255,.28);color:#fff}
+.hero .btn-secondary:hover,.dark-band .btn-secondary:hover,.cta .btn-secondary:hover{background:rgba(255,255,255,.08);color:#fff}
 html[data-theme="light"] .btn-dark{background:#09223d;color:#fff}
 html[data-theme="dark"] .btn-dark{background:#e4bd6a;color:#071725;border-color:#e4bd6a}
 html[data-theme="dark"] .btn-dark:hover{background:#f0cf7d;color:#071725}
-html[data-theme="light"] .btn-secondary{color:#fff;border-color:rgba(255,255,255,.25)}
+
 /* Private OS */
 .os-shell{background:var(--surface-0);color:var(--text-strong)}
 html[data-theme="dark"] .os-shell{background:#050e17}
