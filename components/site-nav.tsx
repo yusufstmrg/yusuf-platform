@@ -20,7 +20,6 @@ const links = [
 export function SiteNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-
   const resolveHref = (href: string) => href === "#building" && pathname !== "/" ? "/#building" : href;
 
   return (
@@ -29,18 +28,12 @@ export function SiteNav() {
         <Link className="brand" href="/" aria-label="Yusuf B. Situmorang home">YUSUF<span>.</span></Link>
         <div className="nav-links">
           {links.map(([label, href, key]) => (
-            <Link
-              className={((pathname === "/" && label === "About") || (href !== "#building" && pathname.startsWith(href))) ? "active" : ""}
-              key={label}
-              href={resolveHref(href)}
-              data-i18n={key}
-            >
-              {label}
-            </Link>
+            <Link className={((pathname === "/" && label === "About") || (href !== "#building" && pathname.startsWith(href))) ? "active" : ""} key={label} href={resolveHref(href)} data-i18n={key}>{label}</Link>
           ))}
         </div>
         <div className="nav-actions">
           <Link className="nav-cta" href="/contact" data-i18n="contact">Contact Me</Link>
+          <Link className="nav-os-link" href="/os" aria-label="Open private Personal OS">Personal OS</Link>
           <LanguageSwitcher />
           <ThemeToggle />
           <button className="icon-btn nav-menu-trigger" type="button" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen((v) => !v)}>
@@ -50,14 +43,13 @@ export function SiteNav() {
       </div>
       {open && (
         <div id="mobile-navigation" className="mobile-nav-panel">
-          {links.map(([label, href, key]) => (
-            <Link key={label} href={resolveHref(href)} onClick={() => setOpen(false)} data-i18n={key}>{label}</Link>
-          ))}
+          {links.map(([label, href, key]) => <Link key={label} href={resolveHref(href)} onClick={() => setOpen(false)} data-i18n={key}>{label}</Link>)}
           <div className="mobile-controls">
             <LanguageSwitcher />
             <ThemeToggle />
           </div>
           <Link className="mobile-nav-cta" href="/contact" onClick={() => setOpen(false)} data-i18n="contact">Contact Me</Link>
+          <Link className="mobile-nav-os" href="/os" onClick={() => setOpen(false)}>Open Personal OS</Link>
         </div>
       )}
     </nav>
