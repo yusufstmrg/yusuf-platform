@@ -11,10 +11,11 @@ jobs:
     steps:
       - name: Check public homepage
         run: curl --fail --silent --show-error --location --max-time 20 https://yusuf-platform.vercel.app/ > /dev/null
-      - name: Check health endpoint
-        run: curl --fail --silent --show-error --location --max-time 20 https://yusuf-platform.vercel.app/api/health > /tmp/health.json
-      - name: Validate health response
-        run: grep -q '"ok":true' /tmp/health.json
+      - name: Check health endpoint is fully healthy
+        run: |
+          curl --fail --silent --show-error --location --max-time 20 https://yusuf-platform.vercel.app/api/health > /tmp/health.json
+          grep -q '"ok":true' /tmp/health.json
+          grep -q '"database":"ok"' /tmp/health.json
       - name: Check robots policy
         run: curl --fail --silent --show-error --location --max-time 20 https://yusuf-platform.vercel.app/robots.txt | grep -q '/os'
       - name: Check private route is protected
