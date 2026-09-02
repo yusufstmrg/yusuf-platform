@@ -45,7 +45,7 @@ export default function Home() {
         </div>
         <div className="hero-card reveal delay">
           <div className="hero-portrait">
-            <Image src="/yusuf-portrait-final.webp" alt="Yusuf B. Situmorang" width={552} height={900} priority sizes="(max-width: 900px) 86vw, 552px"/>
+            <Image src="/yusuf-portrait.webp" alt="Yusuf B. Situmorang" width={694} height={1158} priority quality={100} sizes="(max-width: 900px) 86vw, 552px"/>
             <div className="portrait-glow" aria-hidden="true"/><div className="portrait-frame" aria-hidden="true"/>
             <div className="portrait-caption"><strong>Build. Serve. Grow. Give.</strong><span>Finance • Business • Technology • Purpose</span></div>
           </div>
