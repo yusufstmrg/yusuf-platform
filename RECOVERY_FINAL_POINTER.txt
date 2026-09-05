@@ -1,0 +1,1 @@
+Pre-recovery head recorded in PRE_RECOVERY_HEAD_SHA.txt.
