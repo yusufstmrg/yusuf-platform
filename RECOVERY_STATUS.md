@@ -1,0 +1,1 @@
+Yusuf OS recovery in progress. The repository's approved visual baseline is commit 3acc00cabedd04d0d61c2e544bb650033df1662d. Pre-recovery head was e6af02eaa2de234eac0838d7c1656f071be9d0f7.
