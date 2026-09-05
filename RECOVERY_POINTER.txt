@@ -1,0 +1,1 @@
+This marker preserves the pre-recovery branch pointer. See Git history.
