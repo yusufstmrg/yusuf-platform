@@ -1,0 +1,1 @@
+Temporary recovery note. See commit history for pre-recovery state and approved baseline.
