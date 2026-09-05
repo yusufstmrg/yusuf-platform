@@ -17,6 +17,11 @@ const links = [
   ["Resume", "/resume", "resume"],
 ] as const;
 
+function isActive(pathname: string, href: string) {
+  if (href === "#building") return false;
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function SiteNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -27,7 +32,7 @@ export function SiteNav() {
         <Link className="brand" href="/" aria-label="Yusuf B. Situmorang home">YUSUF<span>.</span></Link>
         <div className="nav-links">
           {links.map(([label, href, key]) => (
-            <Link className={((pathname === "/" && label === "About") || (href !== "#building" && pathname.startsWith(href))) ? "active" : ""} key={label} href={href} data-i18n={key}>{label}</Link>
+            <Link className={isActive(pathname, href) ? "active" : ""} key={label} href={href} data-i18n={key}>{label}</Link>
           ))}
         </div>
         <div className="nav-actions">
@@ -42,7 +47,7 @@ export function SiteNav() {
       {open && (
         <div className="mobile-nav-panel">
           {links.map(([label, href, key]) => (
-            <Link key={label} href={href} onClick={() => setOpen(false)} data-i18n={key}>{label}</Link>
+            <Link key={label} className={isActive(pathname, href) ? "active" : ""} href={href} onClick={() => setOpen(false)} data-i18n={key}>{label}</Link>
           ))}
           <div className="mobile-controls">
             <LanguageSwitcher />
